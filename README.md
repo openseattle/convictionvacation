@@ -1,6 +1,6 @@
 # Conviction Vacation
 
-Automating steps to vacate convictions in King County.
+Automating conviction vacation in King County.
 
 ## Some Background
 One in four Washingtonians have been involved in the state criminal justice system.  Those with a criminal record face
