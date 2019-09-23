@@ -5,24 +5,28 @@ export class CalculatorOutput {
   }
 
   getConviction(id) {
+    let matchingConviction = null;
     this.convictions.forEach(conviction => {
-      if (conviction.id === id) return conviction;
+      if (conviction.id === id) {
+        matchingConviction = conviction;
+      }
     })
+    return matchingConviction;
   }
 }
 
 export class ConvictionOutput {
-  constructor(id, vactable, reasons) {
+  constructor(id, vacatable, reasons) {
     this.id = id;
-    this.vactable = vactable;
+    this.vacatable = vacatable;
     this.reasons = reasons;
   }
 }
 
 export class ConvictionVacatableReasons {
-  constructor(vacatableReasons, notVacableReasons, errors) {
+  constructor(vacatableReasons, notVacatableReasons, errors) {
     this.vacatableReasons = vacatableReasons;
-    this.notVacableReasons = notVacableReasons;
+    this.notVacatableReasons = notVacatableReasons;
     this.errors = errors;
   }
 }
