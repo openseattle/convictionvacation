@@ -9,6 +9,36 @@ export default class EligibilityTimelineCalculator {
     let output = this.createSkeletonCalculatorOutput(input);
     let calculationDate = moment(input.calculationDate);
 
+    // 0. Validate inputs
+    input.convictions.forEach((conviction) => {
+      let convictionOutput = output.getConviction(conviction.id);
+      
+      if (!conviction.classification) {
+        convictionOutput.reasons.errors.push("Conviction's Crime Classification not specified.");
+      }
+
+      if (!conviction.relevantDate) {
+        convictionOutput.reasons.errors.push("Conviction's Relevant Date not specified.");
+      } else {
+        let relevantDate = moment(conviction.relevantDate);
+        if (relevantDate > calculationDate) {
+          convictionOutput.reasons.errors.push("The Relevant Date is after the date of calculation.");
+        }
+      }
+
+      if (!conviction.id) {
+        convictionOutput.reasons.errors.push("Conviction's ID not specified.");
+      }
+
+      if (!conviction.crime) {
+        convictionOutput.reasons.errors.push("Conviction's Crime name not specified.");
+      }
+
+      if (!conviction.isDomesticViolenceRelated) {
+        convictionOutput.reasons.errors.push("Conviction's isDomesticViolenceRelated flag not specified.");
+      }
+    });
+
     // 1. Determine the most recent conviction date, then check whether date between NOW and the date
     //    recent conviction will make any of the convictions ineligible for vacation
     //      Misdemeanor & Gross Misdemeanor - no new conviction in the past 3 years
@@ -49,7 +79,6 @@ export default class EligibilityTimelineCalculator {
           break; 
       }
     });
-
 
     // TODO: Need to consider how the "Operating Vehicle Under Influence" can be fed into the calculator, as
     //       current UI design does not cater for this scenario
@@ -155,7 +184,7 @@ export default class EligibilityTimelineCalculator {
       } else if (conviction.reasons.vacatableReasons.length > 0) {
         conviction.vacatable = true;
       } else {
-        console.error("Conviction output does not have any errors, vacatable reasons and not vacatable reasons.")
+        console.error("Conviction output does not have any errors, vacatable reasons and not-vacatable reasons.")
       }
     });
   }
