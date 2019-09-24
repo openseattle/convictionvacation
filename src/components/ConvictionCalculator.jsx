@@ -7,8 +7,6 @@ import ConvictionResults from './ConvictionResults';
 import EligibilityTimelineCalculator from '../logic/EligibilityTimelineCalculator';
 import { CalculatorInput, ConvictionInput } from '../logic/type/CalculatorInput';
 
-//import mockOutput from '../logic/mockdata/Output';
-
 const ConvictionCalculator = () => {
   const calculator = new EligibilityTimelineCalculator();
   const [hasResults, setHasResults] = React.useState(false);
@@ -29,17 +27,13 @@ const ConvictionCalculator = () => {
     });
     const convictionInputs = filledInConvictions.map(conviction => new ConvictionInput(conviction.id,
       conviction.name,
-      conviction.classification,
+      conviction.classification === 'unknown' ? null : conviction.classification,
       conviction.isDomesticViolence,
       moment(conviction.date, 'YYYY-MM-DD').toISOString()));
     const calculationDate = moment().toISOString();
     const calculatorInput = new CalculatorInput(calculationDate, convictionInputs);
     const calculatorOutput = calculator.calculate(calculatorInput);
-    //console.log('filled in', filledInConvictions);
-    //console.log('calc in', calculatorInput);
-    //console.log('calc out', calculatorOutput);
     results.current = calculatorOutput;
-    //results.current = mockOutput;
     setHasResults(true);
   };
 

@@ -23,6 +23,11 @@ const convictionClassificationOptions = [
     key: CrimeClassification['GROSS MISDEMEANOR'],
     value: CrimeClassification['GROSS MISDEMEANOR'],
     text: 'Gross Misdemeanor'
+  },
+  {
+    key: 'UNCLASSIFIED',
+    value: 'unknown',
+    text: 'Unknown'
   }
 ];
 
