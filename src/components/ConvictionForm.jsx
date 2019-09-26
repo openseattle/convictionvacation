@@ -13,7 +13,7 @@ const Headers = [
     // width: '4'
   },
   {
-    text: 'Classification',
+    text: 'Classifications',
     // width: '3'
   },
   {
@@ -37,7 +37,7 @@ const ConvictionForm = ({
     <React.Fragment>
       <div className="client-name">
         <Label>Client Name</Label>
-        <Input placeholder='' name='id' value="" onChange="onChange" />
+        <Input placeholder='' name='id' /*value="" onChange="onChange"*/ />
       </div>
       <Table>
         <Table.Header>
@@ -64,7 +64,7 @@ const ConvictionForm = ({
             />)}
         </Table.Body>
       </Table>
-      <Button secondary onClick={addConvictions}>Add Five Convictions</Button>
+      <Button secondary onClick={addConvictions}>Add More</Button>
       <Button primary onClick={handleSubmit}>Submit</Button>
     </React.Fragment>
   );

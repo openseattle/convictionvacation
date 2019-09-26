@@ -34,18 +34,28 @@
 
 /* BEGIN CUSTOM CSS TO MATCH WIREFRAME */
 
-/* *{text-transform:uppercase;font-family: Arial, Helvetica, sans-serif}
+*{text-transform:uppercase;font-family: "Gill Sans", sans-serif}
 
 header.App-header{background:#FFD098;color:#747474;margin-top:30px;font-size:35px}
 
 div.client-name{padding:60px 40px;text-align:left}
 div.ui.label{background:none;text-transform:uppercase;font-size:25px;color:black;font-weight:1}
-div.ui.input input{border-radius:0px;border:1px solid #755A16;background:#F2F2F2;min-width:345px}
+div.ui.input input,div.ui.input input:focus{border-radius:0px;border:1px solid #755A16;background:#F2F2F2;width:100%;color:#695A32;font-size:20px;text-align:center;padding:5px;height:35px}
+div.ui.input input:not([type="date"]){text-transform:none}
+.client-name div.ui.input input{min-width:345px}
 
 table.ui.table{border:none;display:block;min-width:100%;}
 table.ui.table thead{min-width:100%;display:inline}
-thead tr{display:grid;grid-template-columns:2fr 4fr repeat(3,3fr) 1fr;width:100%;background:none}
-tr td{overflow:hidden}
-tr th{background:none;border:none;text-transform:uppercase;font-size:20px;font-weight:1.5;text-align:center;color:black;width:100%}
-tr td:first-child div.ui.input{position:relative;max-width:10%}
-tr td:first-child div.ui.input input{position:relative;max-width:10%;} */
+table.ui.table div.ui.input{width:100%}
+tr{display:grid;grid-template-columns:2fr 4fr repeat(3,3fr) 1fr;width:100%;background:none;position:relative}
+tbody tr td{min-width:0;}
+table.ui.table tr th{background:none;border:none;text-transform:uppercase;font-size:20px;font-weight:1.5;text-align:center;color:black;width:100%}
+tbody tr td div.ui.selection.dropdown{background:#D3C4A7;font-size:20px;display:block;max-height:3px}
+div.visible.menu.transition{background:#DFD1B8}
+/* div.item{border:none} */
+div.ui.fitted.checkbox{display:block;height:35px;width:35px;margin:auto;}
+div.ui.fitted.checkbox input{height:35px;width:35px}
+div.ui.fitted.checkbox label::before,div.ui.checked.fitted.checkbox label::before{height:35px;width:35px;background:#D3D3D3;border:1px solid #755A16;border-radius:0px}
+div.ui.checked.fitted.checkbox label::after{height:35px;width:35px;font-size:55px;font-weight:0.5;margin-top:7px;content:'✓';font-family:BlinkMacSystemFont;color:#7B6E4B}
+button.ui.icon.button{background:#F2F2F2;color:#695A32;border:1px solid #755A16}
+button.ui.icon.button:hover{background:#D3D3D3;color:#7B6E4B;}
