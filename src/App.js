@@ -1,17 +1,10 @@
 import React from 'react';
 
-import EligibilityTimelineCalculator from './logic/EligibilityTimelineCalculator'
-import mockInput from './logic/mockdata/Input';
+import ConvictionCalculator from './components/ConvictionCalculator';
 
 import './App.css';
 
 function App() {
-
-  let calculator = new EligibilityTimelineCalculator();
-  let output = calculator.calculate(mockInput);
-
-  console.log(output);
-
   return (
     <div className="App">
       <header className="App-header">
@@ -19,6 +12,7 @@ function App() {
           King County Conviction Vacation (Coming Soon)
         </p>
       </header>
+      <ConvictionCalculator />
     </div>
   );
 }

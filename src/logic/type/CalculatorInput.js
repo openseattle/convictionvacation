@@ -6,9 +6,10 @@ export class CalculatorInput {
 }
 
 export class ConvictionInput {
-  constructor(id, crime, isDomesticViolenceRelated, relevantDate) {
+  constructor(id, crime, classification, isDomesticViolenceRelated, relevantDate) {
     this.id = id;
     this.crime = crime;
+    this.classification = classification;
     this.isDomesticViolenceRelated = isDomesticViolenceRelated;
     this.relevantDate = relevantDate;
   }
