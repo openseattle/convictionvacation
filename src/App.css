@@ -31,3 +31,21 @@
     transform: rotate(360deg);
   }
 }
+
+/* BEGIN CUSTOM CSS TO MATCH WIREFRAME */
+
+/* *{text-transform:uppercase;font-family: Arial, Helvetica, sans-serif}
+
+header.App-header{background:#FFD098;color:#747474;margin-top:30px;font-size:35px}
+
+div.client-name{padding:60px 40px;text-align:left}
+div.ui.label{background:none;text-transform:uppercase;font-size:25px;color:black;font-weight:1}
+div.ui.input input{border-radius:0px;border:1px solid #755A16;background:#F2F2F2;min-width:345px}
+
+table.ui.table{border:none;display:block;min-width:100%;}
+table.ui.table thead{min-width:100%;display:inline}
+thead tr{display:grid;grid-template-columns:2fr 4fr repeat(3,3fr) 1fr;width:100%;background:none}
+tr td{overflow:hidden}
+tr th{background:none;border:none;text-transform:uppercase;font-size:20px;font-weight:1.5;text-align:center;color:black;width:100%}
+tr td:first-child div.ui.input{position:relative;max-width:10%}
+tr td:first-child div.ui.input input{position:relative;max-width:10%;} */

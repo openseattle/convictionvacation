@@ -55,23 +55,23 @@ const Conviction = ({
   return (
     <Table.Row>
       <Table.Cell>
-        <Input placeholder='Conviction ID' name='id' value={id} onChange={onChange} />
+        <Input /*placeholder='Conviction ID'*/ name='id' value={id} onChange={onChange} />
       </Table.Cell>
       <Table.Cell>
-        <Input placeholder='Conviction name' name='name' value={name} onChange={onChange} />
+        <Input /*placeholder='Conviction name'*/ name='name' value={name} onChange={onChange} />
       </Table.Cell>
       <Table.Cell>
         <Select
-          placeholder='Conviction classification'
+          /*placeholder='Conviction classification'*/
           value={classification}
           onChange={onSelect}
           options={convictionClassificationOptions} />
       </Table.Cell>
       <Table.Cell>
-        <Checkbox checked={isDomesticViolence} onChange={onChecked} />
+        <Input type='date' name='date' value={date} onChange={onChange} />
       </Table.Cell>
       <Table.Cell>
-        <Input type='date' name='date' value={date} onChange={onChange} />
+        <Checkbox checked={isDomesticViolence} onChange={onChecked} />
       </Table.Cell>
       <Table.Cell>
         <Button icon onClick={onDelete}>

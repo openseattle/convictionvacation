@@ -1,28 +1,28 @@
 import React from 'react';
-import { Button, Table } from 'semantic-ui-react';
+import { Button, Table, Input, Label } from 'semantic-ui-react';
 
 import Conviction from './Conviction';
 
 const Headers = [
   {
-    text: 'ID',
-    width: '3'
+    text: 'Case No.',
+    // width: '2'
   },
   {
     text: 'Conviction Name',
-    width: '4'
+    // width: '4'
   },
   {
     text: 'Classification',
-    width: '3'
+    // width: '3'
   },
   {
-    text: 'Is Domestic Violence Related?',
-    width: '3'
+    text: 'Last Relevant Date',
+    // width: '3'
   },
   {
-    text: 'Date',
-    width: '3'
+    text: 'Domestic Violence',
+    // width: '3'
   }
 ];
 
@@ -35,7 +35,11 @@ const ConvictionForm = ({
 }) => {
   return (
     <React.Fragment>
-      <Table striped>
+      <div className="client-name">
+        <Label>Client Name</Label>
+        <Input placeholder='' name='id' value="" onChange="onChange" />
+      </div>
+      <Table>
         <Table.Header>
           <Table.Row>
             {Headers.map(headerMetaData =>
