@@ -55,14 +55,14 @@ const ConvictionForm = ({
 
   return (
     <React.Fragment>
-      <Input label='Client Name: ' placeholder='Client Name' value={clientName} onChange={onClientNameChange} />
+      <Input label='Client Name: ' /*placeholder='Client Name'*/ value={clientName} onChange={onClientNameChange} />
       <Table /*striped*/ stackable>
         <Table.Header>
           <Table.Row>
             {Headers.map(headerMetaData =>
               <Table.HeaderCell key={headerMetaData.text} width={headerMetaData.width}>
                 <div>{headerMetaData.text}</div>
-                {headerMetaData.subtext && <div>{headerMetaData.subtext}</div>}
+                {headerMetaData.subtext && <div className="subtext">{headerMetaData.subtext}</div>}
               </Table.HeaderCell>
             )}
           </Table.Row>

@@ -56,15 +56,15 @@ const Conviction = ({
   return (
     <Table.Row>
       <Table.Cell>
-        <Input fluid placeholder='Case No.' name='id' value={conviction.id} onChange={onChange} />
+        <Input fluid /*placeholder='Case No.'*/ name='id' value={conviction.id} onChange={onChange} />
       </Table.Cell>
       <Table.Cell>
-        <Input fluid placeholder='Conviction name' name='name' value={conviction.name} onChange={onChange} />
+        <Input fluid /*placeholder='Conviction name'*/ name='name' value={conviction.name} onChange={onChange} />
       </Table.Cell>
       <Table.Cell>
         <Select
           fluid
-          placeholder='Conviction classification'
+          // placeholder='Conviction classification'
           value={conviction.classification}
           onChange={onSelect}
           options={convictionClassificationOptions} />
