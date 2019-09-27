@@ -1,50 +1,68 @@
 import React from 'react';
-import { Button, Table, Input, Label, TextArea } from 'semantic-ui-react';
+import { Button, Grid, Input, Table } from 'semantic-ui-react';
 
 import Conviction from './Conviction';
 
 const Headers = [
   {
     text: 'Case No.',
-    // width: '2'
+    // width: '3'
   },
   {
-    text: 'Conviction Name',
+    text: 'Eligible Convictions',
     // width: '4'
   },
   {
     text: 'Classifications',
-    // width: '3'
+    // width: '4'
   },
   {
     text: 'Last Relevant Date',
+    subtext: '(Leave blank if none)',
     // width: '3'
   },
   {
     text: 'Domestic Violence',
-    // width: '3'
+    // width: '1'
+  },
+  {
+    text: null,
+    // width: '1'
   }
 ];
 
 const ConvictionForm = ({
+  addConvictions,
   convictions,
   handleChange,
   handleDelete,
-  handleSubmit,
-  addConvictions
+  clientName,
+  setClientName
 }) => {
+  const [convictionNum, setConvictionNum] = React.useState(1);
+
+  const onConvictionNumChange = (e, { value }) => {
+    setConvictionNum(value);
+  };
+
+  const onClientNameChange = (e, { value }) => {
+    setClientName(value);
+  };
+
+  const handleAddConvictions = () => {
+    addConvictions(parseInt(convictionNum));
+  };
+
   return (
     <React.Fragment>
-      <div className="client-name">
-        <Label>Client Name</Label>
-        <Input placeholder='' name='id' /*value="" onChange="onChange"*/ />
-      </div>
-      <Table>
+      <Input label='Client Name: ' placeholder='Client Name' value={clientName} onChange={onClientNameChange} />
+      <Table /*striped*/ stackable>
         <Table.Header>
           <Table.Row>
             {Headers.map(headerMetaData =>
               <Table.HeaderCell key={headerMetaData.text} width={headerMetaData.width}>
-                {headerMetaData.text}
+                <div>{headerMetaData.text}</div>
+                {headerMetaData.subtext && <div>{headerMetaData.subtext}</div>}
               </Table.HeaderCell>
             )}
           </Table.Row>
@@ -54,23 +72,28 @@ const ConvictionForm = ({
             <Conviction
               key={i}
               index={i}
-              id={conviction.id}
-              name={conviction.name}
-              classification={conviction.classification}
-              isDomesticViolence={conviction.isDomesticViolence}
-              date={conviction.date}
+              conviction={conviction}
               handleChange={handleChange}
               handleDelete={handleDelete}
             />)}
         </Table.Body>
       </Table>
-      <div className="add-more-button-container">
-        <Button secondary onClick={addConvictions}>Add More</Button>
-      </div>
-      <div className="text-area-and-submit-button-container">
-        <TextArea></TextArea>
-        <Button primary onClick={handleSubmit}>Submit</Button>
-      </div>
+      <Grid padded stackable columns={1}>
+        <Grid.Row>
+          <Grid.Column width={4}>
+            <Input
+              fluid
+              min='1'
+              max='100'
+              type='number'
+              placeholder='Number of convictions'
+              value={convictionNum}
+              onChange={onConvictionNumChange}
+              label={<Button secondary onClick={handleAddConvictions}>Add More Convictions</Button>}
+              labelPosition='right' />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </React.Fragment>
   );
 };

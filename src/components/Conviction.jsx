@@ -23,16 +23,17 @@ const convictionClassificationOptions = [
     key: CrimeClassification['GROSS MISDEMEANOR'],
     value: CrimeClassification['GROSS MISDEMEANOR'],
     text: 'Gross Misdemeanor'
+  },
+  {
+    key: 'UNCLASSIFIED',
+    value: 'unclear',
+    text: 'Unclear'
   }
 ];
 
 const Conviction = ({
   index,
-  id,
-  name,
-  classification,
-  isDomesticViolence,
-  date,
+  conviction,
   handleChange,
   handleDelete
 }) => {
@@ -55,26 +56,27 @@ const Conviction = ({
   return (
     <Table.Row>
       <Table.Cell>
-        <Input /*placeholder='Conviction ID'*/ name='id' value={id} onChange={onChange} />
+        <Input fluid placeholder='Case No.' name='id' value={conviction.id} onChange={onChange} />
       </Table.Cell>
       <Table.Cell>
-        <Input /*placeholder='Conviction name'*/ name='name' value={name} onChange={onChange} />
+        <Input fluid placeholder='Conviction name' name='name' value={conviction.name} onChange={onChange} />
       </Table.Cell>
       <Table.Cell>
         <Select
-          /*placeholder='Conviction classification'*/
-          value={classification}
+          fluid
+          placeholder='Conviction classification'
+          value={conviction.classification}
           onChange={onSelect}
           options={convictionClassificationOptions} />
       </Table.Cell>
       <Table.Cell>
-        <Input type='date' name='date' value={date} onChange={onChange} />
+        <Input fluid type='date' name='date' value={conviction.date} onChange={onChange} />
       </Table.Cell>
       <Table.Cell>
-        <Checkbox checked={isDomesticViolence} onChange={onChecked} />
+        <Checkbox checked={conviction.isDomesticViolence} onChange={onChecked} />
       </Table.Cell>
       <Table.Cell>
-        <Button icon onClick={onDelete}>
+        <Button fluid icon onClick={onDelete}>
           <Icon name='close' />
         </Button>
       </Table.Cell>
