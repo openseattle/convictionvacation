@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import { Button, Grid } from 'semantic-ui-react';
 
 import ConvictionForm from './ConvictionForm';
 import ConvictionResults from './ConvictionResults';
@@ -10,14 +11,20 @@ import { CalculatorInput, ConvictionInput } from '../logic/type/CalculatorInput'
 const ConvictionCalculator = () => {
   const calculator = new EligibilityTimelineCalculator();
   const [hasResults, setHasResults] = React.useState(false);
-  const results = React.useRef();
+  const calculatorInputRef = React.useRef();
+  const calculatorOutputRef = React.useRef();
   const [convictions, setConvictions] = React.useState([]);
+  const [clientName, setClientName] = React.useState('');
 
-  const addConvictions = () => {
-    const newConvictions = Array.apply(null, Array(5)).map(() => (
+  const addConvictions = (num) => {
+    const newConvictions = Array.apply(null, Array(num)).map(() => (
       { id: '', name: '', classification: '', isDomesticViolence: false, date: '' }));
     setConvictions(convictions => convictions.concat(newConvictions));
   };
+
+  React.useEffect(() => {
+    addConvictions(5);
+  }, []);
 
   const handleSubmit = () => {
     const filledInConvictions = convictions.filter(conviction => {
@@ -27,13 +34,14 @@ const ConvictionCalculator = () => {
     });
     const convictionInputs = filledInConvictions.map(conviction => new ConvictionInput(conviction.id,
       conviction.name,
-      conviction.classification === 'unknown' ? null : conviction.classification,
+      conviction.classification === 'unclear' ? null : conviction.classification,
       conviction.isDomesticViolence,
       moment(conviction.date, 'YYYY-MM-DD').toISOString()));
     const calculationDate = moment().toISOString();
     const calculatorInput = new CalculatorInput(calculationDate, convictionInputs);
+    calculatorInputRef.current = calculatorInput;
     const calculatorOutput = calculator.calculate(calculatorInput);
-    results.current = calculatorOutput;
+    calculatorOutputRef.current = calculatorOutput;
     setHasResults(true);
   };
 
@@ -54,28 +62,51 @@ const ConvictionCalculator = () => {
   };
 
   const handleBack = () => {
-    results.current = [];
+    calculatorOutputRef.current = null;
     setHasResults(false);
   };
 
   const handleReset = () => {
-    results.current = [];
+    calculatorInputRef.current = null;
+    calculatorOutputRef.current = null;
     setConvictions([]);
+    addConvictions(5);
+    setClientName('');
     setHasResults(false);
+  };
+
+  const handlePrint = () => {
+    window.print();
   };
 
   return (
     <React.Fragment>
-      {hasResults ? 
-        <ConvictionResults results={results.current}
+      {hasResults ?
+        <ConvictionResults
+          calculatorInput={calculatorInputRef.current}
+          calculatorOutput={calculatorOutputRef.current}
+          clientName={clientName}
           handleBack={handleBack}
           handleReset={handleReset} /> :
         <ConvictionForm
+          addConvictions={addConvictions}
           convictions={convictions}
           handleChange={handleChange}
           handleDelete={handleDelete}
-          handleSubmit={handleSubmit}
-          addConvictions={addConvictions} />}
+          clientName={clientName}
+          setClientName={setClientName} />}
+
+      <Grid padded stackable columns={2}>
+        <Grid.Row>
+          <Grid.Column width={13}>
+            {/*notes section goes here as a Textarea?*/}
+          </Grid.Column>
+          <Grid.Column verticalAlign='middle' width={2}>
+            {hasResults && <Button fluid primary onClick={handlePrint}>Print</Button>}
+            {!hasResults && <Button fluid primary onClick={handleSubmit}>Submit</Button>}
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </React.Fragment>
   );
 };
