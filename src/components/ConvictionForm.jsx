@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Table, Input, Label } from 'semantic-ui-react';
+import { Button, Table, Input, Label, TextArea } from 'semantic-ui-react';
 
 import Conviction from './Conviction';
 
@@ -64,8 +64,13 @@ const ConvictionForm = ({
             />)}
         </Table.Body>
       </Table>
-      <Button secondary onClick={addConvictions}>Add More</Button>
-      <Button primary onClick={handleSubmit}>Submit</Button>
+      <div className="add-more-button-container">
+        <Button secondary onClick={addConvictions}>Add More</Button>
+      </div>
+      <div className="text-area-and-submit-button-container">
+        <TextArea></TextArea>
+        <Button primary onClick={handleSubmit}>Submit</Button>
+      </div>
     </React.Fragment>
   );
 };

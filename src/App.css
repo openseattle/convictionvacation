@@ -44,18 +44,28 @@ div.ui.input input,div.ui.input input:focus{border-radius:0px;border:1px solid #
 div.ui.input input:not([type="date"]){text-transform:none}
 .client-name div.ui.input input{min-width:345px}
 
-table.ui.table{border:none;display:block;min-width:100%;}
+table.ui.table{border:none;display:block;min-width:100%;margin:0;padding:0 10px 0 20px}
 table.ui.table thead{min-width:100%;display:inline}
 table.ui.table div.ui.input{width:100%}
-tr{display:grid;grid-template-columns:2fr 4fr repeat(3,3fr) 1fr;width:100%;background:none;position:relative}
-tbody tr td{min-width:0;}
+tr,div.add-more-button-container{display:grid;grid-template-columns:2fr 4fr repeat(3,3fr) 1fr;width:100%;background:none;position:relative}
+table.ui.table tbody tr td{min-width:0;border:none;padding:8px}
 table.ui.table tr th{background:none;border:none;text-transform:uppercase;font-size:20px;font-weight:1.5;text-align:center;color:black;width:100%}
-tbody tr td div.ui.selection.dropdown{background:#D3C4A7;font-size:20px;display:block;max-height:3px}
+tbody tr td div.ui.selection.dropdown{background:#D3C4A7;font-size:20px;display:block;min-width:0px;min-height:0px;padding:7px}
 div.visible.menu.transition{background:#DFD1B8}
-/* div.item{border:none} */
+
 div.ui.fitted.checkbox{display:block;height:35px;width:35px;margin:auto;}
 div.ui.fitted.checkbox input{height:35px;width:35px}
 div.ui.fitted.checkbox label::before,div.ui.checked.fitted.checkbox label::before{height:35px;width:35px;background:#D3D3D3;border:1px solid #755A16;border-radius:0px}
 div.ui.checked.fitted.checkbox label::after{height:35px;width:35px;font-size:55px;font-weight:0.5;margin-top:7px;content:'✓';font-family:BlinkMacSystemFont;color:#7B6E4B}
 button.ui.icon.button{background:#F2F2F2;color:#695A32;border:1px solid #755A16}
 button.ui.icon.button:hover{background:#D3D3D3;color:#7B6E4B;}
+
+div.ui.selection.dropdown i.dropdown.icon{padding:7px 0 0;}
+i.dropdown.icon::before{color:white;font-size:40px}
+
+div.add-more-button-container button.ui.secondary.button{grid-column:2;background:none;color:black;display:block;text-transform:uppercase;font-weight:normal;font-size:20px;}
+button.ui.secondary.button:hover{background:none;color:#81765E;}
+
+.text-area-and-submit-button-container{background:pink;vertical-align:center}
+textarea{width:50%;text-align:left;margin:10px}
+button.ui.primary.button{background:lime;display:inline-block;margin-top:-100px}
