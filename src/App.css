@@ -34,7 +34,7 @@
 
 /* BEGIN CUSTOM CSS TO MATCH WIREFRAME */
 
-*{text-transform:uppercase;font-family: "Gill Sans", sans-serif}
+/* *{text-transform:uppercase;font-family: "Gill Sans", sans-serif}
 
 header.App-header{background:#FFD098;color:#747474;margin-top:30px;font-size:35px}
 
@@ -64,7 +64,7 @@ button.ui.icon.button{background:#F2F2F2;color:#695A32;border:1px solid #755A16}
 button.ui.icon.button:hover{background:#D3D3D3;color:#7B6E4B;}
 
 div.ui.selection.dropdown i.dropdown.icon{padding:7px 0 0;}
-i.dropdown.icon::before{color:white;font-size:40px}
+i.dropdown.icon::before{color:white;font-size:40px} */
 
 @media print {
   .ui.button {
