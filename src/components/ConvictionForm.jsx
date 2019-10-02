@@ -55,7 +55,7 @@ const ConvictionForm = ({
 
   return (
     <React.Fragment>
-      <Input label='Client Name: ' /*placeholder='Client Name'*/ value={clientName} onChange={onClientNameChange} />
+      <Input label='Client Name: ' /*placeholder='Client Name'*/ size='large' value={clientName} onChange={onClientNameChange} />
       <Table /*striped*/ stackable>
         <Table.Header>
           <Table.Row>
@@ -78,6 +78,7 @@ const ConvictionForm = ({
             />)}
         </Table.Body>
       </Table>
+
       <Grid padded stackable columns={1}>
         <Grid.Row>
           <Grid.Column width={4}>

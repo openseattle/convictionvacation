@@ -34,7 +34,6 @@ const ConvictionResults = ({
     return (
       {
         id: id,
-
         crime: calculatorInput.convictions[i].crime,
         vacatable: vacatable,
         reasons: messages
@@ -81,7 +80,7 @@ const ConvictionResults = ({
             <Button fluid secondary onClick={handleBack}>Back</Button>
           </Grid.Column>
           <Grid.Column width={2}>
-            <Button fluid primary onClick={handleReset}>Reset</Button>
+            <Button fluid primary onClick={handleReset} className="reset-button">Reset</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>

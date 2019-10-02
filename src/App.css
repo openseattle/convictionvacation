@@ -37,7 +37,7 @@
 *{text-transform:uppercase;font-family: "Gill Sans", sans-serif}
 ::placeholder{opacity:0}
 
-header.App-header{background:#FFD098;color:#747474;margin-top:30px;font-size:35px}
+header.App-header{background:#FFD098;color:#747474;margin-top:30px;font-size:35px;padding:0px 10px}
 
 div.ui.labeled.input{margin:60px 40px;width:90%}
 div.ui.labeled.input div.ui.label{background:none;text-transform:uppercase;font-size:25px;color:black;font-weight:1;border:1px solid transparent;}
@@ -67,9 +67,28 @@ button.ui.icon.button:hover{background:#D3D3D3;color:#7B6E4B;}
 div.ui.selection.dropdown i.dropdown.icon{padding:7px 0 0;}
 i.dropdown.icon::before{color:white;font-size:40px}
 
+div.ui.stackable.padded.one.column.grid div.row div.four.wide.column div{margin:0px 50px}
+div.ui.stackable.padded.one.column.grid div.row div.four.wide.column div input{min-width:60px}
+
+div.thirteen.wide.column form.ui.form textarea{text-transform:none}
+div.thirteen.wide.column form.ui.form textarea::placeholder{opacity:1;font-size:20px}
+button.ui.fluid.primary.button.submit-button{background:#FFD098;text-transform:uppercase;font-size:30px;font-family: "Gill Sans", sans-serif;font-weight:normal;padding:15px 30px;width:auto;color:#747474}
+
+#notes-print-area {
+  display: none;
+}
+
 @media print {
-  .ui.button {
+  div.ui.grid {
     display: none !important;
+  }
+
+  #notes-print-area {
+    display: block;
+    overflow: visible;
+    overflow-wrap: break-word;
+    white-space: pre;
+    white-space: pre-wrap;
   }
 }
 
@@ -82,13 +101,14 @@ table.ui.table.results tbody tr{border-top:0.5px solid #E4D28F;padding-top:10px;
 table.ui.table.results tr td{text-align:center}
 table.ui.table.results tr td:last-child,table.ui.table.results tr th:last-child{text-align:left}
 
-button.ui.fluid.primary.button.print-button{background:#AFACA7;text-transform:uppercase;font-size:30px;font-family: "Gill Sans", sans-serif;font-weight:normal;padding:15px 30px;width:auto}
+button.ui.fluid.primary.button.reset-button{background:black}
+button.ui.fluid.primary.button.print-button{background:#AFACA7;text-transform:uppercase;font-size:30px;font-family: "Gill Sans", sans-serif;font-weight:normal;padding:15px 30px;width:auto;color:white}
 
 /* MOBILE SPECIFIC  */
 @media only screen and (max-width: 768px) {
   ::placeholder{opacity:1}
   header.App-header{margin-top:20px;font-size:25px}
-
+  
   div.ui.labeled.input{margin:0;padding:0px;}
   div.ui.labeled.input div.ui.label{font-size:20px;}
   div#root div div.ui.labeled.input input[type="text"]:nth-child(2){width:48%}
