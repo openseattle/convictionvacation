@@ -4,19 +4,19 @@ import { Button, Grid, List, Table } from 'semantic-ui-react';
 const Headers = [
   {
     text: 'Case No.',
-    width: '3'
+    // width: '3'
   },
   {
     text: 'Eligible Convictions',
-    width: '3'
+    // width: '3'
   },
   {
     text: 'Eligibility',
-    width: '3'
+    // width: '3'
   },
   {
     text: 'Reasons',
-    width: '7'
+    // width: '7'
   }
 ];
 
@@ -45,7 +45,7 @@ const ConvictionResults = ({
   return (
     <React.Fragment>
       <h2>{`Report for ${clientName}`}</h2>
-      <Table striped stackable>
+      <Table /*striped*/ stackable className="results">
         <Table.Header>
           <Table.Row>
             {Headers.map(headerMetaData =>
@@ -63,7 +63,7 @@ const ConvictionResults = ({
               <Table.Cell>
                 {crime}
               </Table.Cell>
-              <Table.Cell style={{color: vacatable ? 'green' : 'red'}}>
+              <Table.Cell style={{color: vacatable ? 'green' : '#A86312'}}>
                 <b>{vacatable ? 'Yes': 'No'}</b>
               </Table.Cell>
               <Table.Cell>

@@ -102,7 +102,7 @@ const ConvictionCalculator = () => {
             {/*notes section goes here as a Textarea?*/}
           </Grid.Column>
           <Grid.Column verticalAlign='middle' width={2}>
-            {hasResults && <Button fluid primary onClick={handlePrint}>Print</Button>}
+            {hasResults && <Button fluid primary onClick={handlePrint} className="print-button">Print</Button>}
             {!hasResults && <Button fluid primary onClick={handleSubmit}>Submit</Button>}
           </Grid.Column>
         </Grid.Row>

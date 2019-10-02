@@ -32,15 +32,16 @@
   }
 }
 
-/* BEGIN CUSTOM CSS TO MATCH WIREFRAME */
+/* BEGIN CUSTOM CSS TO MATCH WIREFRAME -- RESULTS SECTION AT BOTTOM */
 
-/* *{text-transform:uppercase;font-family: "Gill Sans", sans-serif}
+*{text-transform:uppercase;font-family: "Gill Sans", sans-serif}
+::placeholder{opacity:0}
 
 header.App-header{background:#FFD098;color:#747474;margin-top:30px;font-size:35px}
 
-div.ui.labeled.input{margin:60px 40px}
+div.ui.labeled.input{margin:60px 40px;width:90%}
 div.ui.labeled.input div.ui.label{background:none;text-transform:uppercase;font-size:25px;color:black;font-weight:1;border:1px solid transparent;}
-div#root div div.ui.labeled.input input[type="text"]:nth-child(2){border-left-color:#695A32;margin:15px}
+div#root div div.ui.labeled.input input[type="text"]:nth-child(2){border-left-color:#695A32;margin:15px;width:50%;max-width:350px}
 div.ui.input input,div.ui.input input:focus{border-radius:0px;border:1px solid #755A16;background:#F2F2F2;width:100%;color:#695A32;font-size:20px;text-align:center;padding:5px;height:35px;}
 div.ui.input input:not([type="date"]){text-transform:none}
 .client-name div.ui.input input{min-width:345px}
@@ -64,10 +65,32 @@ button.ui.icon.button{background:#F2F2F2;color:#695A32;border:1px solid #755A16}
 button.ui.icon.button:hover{background:#D3D3D3;color:#7B6E4B;}
 
 div.ui.selection.dropdown i.dropdown.icon{padding:7px 0 0;}
-i.dropdown.icon::before{color:white;font-size:40px} */
+i.dropdown.icon::before{color:white;font-size:40px}
 
 @media print {
   .ui.button {
     display: none !important;
   }
+}
+
+/* RESULTS */
+
+h2{color:#695A32;margin-left:8%}
+table.ui.table.results tr{display:grid;grid-template-columns:repeat(3,3fr) 7fr;width:100%;background:none;position:relative;font-size:20px}
+table.ui.table.results tbody{border-top:0.5px solid #E4D28F;margin-top:15px}
+table.ui.table.results tbody tr{border-top:0.5px solid #E4D28F;padding-top:10px;color:#695A32}
+table.ui.table.results tr td{text-align:center}
+table.ui.table.results tr td:last-child,table.ui.table.results tr th:last-child{text-align:left}
+
+button.ui.fluid.primary.button.print-button{background:#AFACA7;text-transform:uppercase;font-size:30px;font-family: "Gill Sans", sans-serif;font-weight:normal;padding:15px 30px;width:auto}
+
+/* MOBILE SPECIFIC  */
+@media only screen and (max-width: 768px) {
+  ::placeholder{opacity:1}
+  header.App-header{margin-top:20px;font-size:25px}
+
+  div.ui.labeled.input{margin:0;padding:0px;}
+  div.ui.labeled.input div.ui.label{background:none;text-transform:uppercase;font-size:20px;color:black;font-weight:1;border:1px solid transparent}
+  div#root div div.ui.labeled.input input[type="text"]:nth-child(2){width:50%}
+
 }
