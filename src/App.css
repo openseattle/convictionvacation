@@ -32,8 +32,20 @@
   }
 }
 
+#notes-print-area {
+  display: none;
+}
+
 @media print {
-  .ui.button {
+  div.ui.grid {
     display: none !important;
+  }
+
+  #notes-print-area {
+    display: block;
+    overflow: visible;
+    overflow-wrap: break-word;
+    white-space: pre;
+    white-space: pre-wrap;
   }
 }

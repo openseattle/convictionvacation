@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { Button, Grid } from 'semantic-ui-react';
+import { Button, Form, Grid, TextArea } from 'semantic-ui-react';
 
 import ConvictionForm from './ConvictionForm';
 import ConvictionResults from './ConvictionResults';
@@ -15,6 +15,7 @@ const ConvictionCalculator = () => {
   const calculatorOutputRef = React.useRef();
   const [convictions, setConvictions] = React.useState([]);
   const [clientName, setClientName] = React.useState('');
+  const [notes, setNotes] = React.useState('');
 
   const addConvictions = (num) => {
     const newConvictions = Array.apply(null, Array(num)).map(() => (
@@ -72,11 +73,16 @@ const ConvictionCalculator = () => {
     setConvictions([]);
     addConvictions(5);
     setClientName('');
+    setNotes('');
     setHasResults(false);
   };
 
   const handlePrint = () => {
     window.print();
+  };
+
+  const onTextAreaChange = (e, { value }) => {
+    setNotes(value);
   };
 
   return (
@@ -99,7 +105,14 @@ const ConvictionCalculator = () => {
       <Grid padded stackable columns={2}>
         <Grid.Row>
           <Grid.Column width={13}>
-            {/*notes section goes here as a Textarea?*/}
+            <Form>
+              <Form.Field><b>Notes:</b></Form.Field>
+              <TextArea
+                onChange={onTextAreaChange}
+                placeholder='Notes and comments...'
+                rows={10}
+                value={notes} />
+            </Form>
           </Grid.Column>
           <Grid.Column verticalAlign='middle' width={2}>
             {hasResults && <Button fluid primary onClick={handlePrint}>Print</Button>}
@@ -107,6 +120,10 @@ const ConvictionCalculator = () => {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      <div id='notes-print-area'>
+        <h5>Notes:</h5>
+        {notes}
+      </div>
     </React.Fragment>
   );
 };
