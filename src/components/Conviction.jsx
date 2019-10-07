@@ -37,6 +37,8 @@ const Conviction = ({
   handleChange,
   handleDelete
 }) => {
+  const [showLabel, setShowLabel] = React.useState(window.matchMedia('(max-width:767px)').matches);
+  
   const onChange = (e, { value }) => {
     handleChange(index, e.currentTarget.name, value);
   };
@@ -52,6 +54,19 @@ const Conviction = ({
   const onDelete = () => {
     handleDelete(index);
   };
+
+  const checkboxLabel = showLabel  ? 'Domestic Violence' : '';
+  const dateLabel = showLabel ? 'Last Relevant Date (Leave blank if none)'  : '';
+  React.useEffect(() => {
+    const onResize = () => {
+      setShowLabel(window.matchMedia('(max-width:767px)').matches);
+    };
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      window.removeEventListener('resize', onResize);
+    };
+  }, []);
 
   return (
     <Table.Row>
@@ -70,10 +85,13 @@ const Conviction = ({
           options={convictionClassificationOptions} />
       </Table.Cell>
       <Table.Cell>
-        <Input fluid type='date' name='date' value={conviction.date} onChange={onChange} />
+        <label>
+          {dateLabel}
+          <Input fluid type='date' name='date' value={conviction.date} onChange={onChange} />
+        </label>
       </Table.Cell>
       <Table.Cell>
-        <Checkbox checked={conviction.isDomesticViolence} onChange={onChecked} />
+        <Checkbox label={checkboxLabel} checked={conviction.isDomesticViolence} onChange={onChecked} />
       </Table.Cell>
       <Table.Cell>
         <Button fluid icon onClick={onDelete}>
