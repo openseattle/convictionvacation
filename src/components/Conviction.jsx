@@ -23,19 +23,22 @@ const convictionClassificationOptions = [
     key: CrimeClassification['GROSS MISDEMEANOR'],
     value: CrimeClassification['GROSS MISDEMEANOR'],
     text: 'Gross Misdemeanor'
+  },
+  {
+    key: 'UNCLASSIFIED',
+    value: 'unclear',
+    text: 'Unclear'
   }
 ];
 
 const Conviction = ({
   index,
-  id,
-  name,
-  classification,
-  isDomesticViolence,
-  date,
+  conviction,
   handleChange,
   handleDelete
 }) => {
+  const [showLabel, setShowLabel] = React.useState(window.matchMedia('(max-width:767px)').matches);
+  
   const onChange = (e, { value }) => {
     handleChange(index, e.currentTarget.name, value);
   };
@@ -52,29 +55,46 @@ const Conviction = ({
     handleDelete(index);
   };
 
+  const checkboxLabel = showLabel  ? 'Domestic Violence' : '';
+  const dateLabel = showLabel ? 'Last Relevant Date (Leave blank if none)'  : '';
+  React.useEffect(() => {
+    const onResize = () => {
+      setShowLabel(window.matchMedia('(max-width:767px)').matches);
+    };
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      window.removeEventListener('resize', onResize);
+    };
+  }, []);
+
   return (
     <Table.Row>
       <Table.Cell>
-        <Input placeholder='Conviction ID' name='id' value={id} onChange={onChange} />
+        <Input fluid placeholder='Case No.' name='id' value={conviction.id} onChange={onChange} />
       </Table.Cell>
       <Table.Cell>
-        <Input placeholder='Conviction name' name='name' value={name} onChange={onChange} />
+        <Input fluid placeholder='Conviction name' name='name' value={conviction.name} onChange={onChange} />
       </Table.Cell>
       <Table.Cell>
         <Select
+          fluid
           placeholder='Conviction classification'
-          value={classification}
+          value={conviction.classification}
           onChange={onSelect}
           options={convictionClassificationOptions} />
       </Table.Cell>
       <Table.Cell>
-        <Checkbox checked={isDomesticViolence} onChange={onChecked} />
+        <label>
+          {dateLabel}
+          <Input fluid type='date' name='date' value={conviction.date} onChange={onChange} />
+        </label>
       </Table.Cell>
       <Table.Cell>
-        <Input type='date' name='date' value={date} onChange={onChange} />
+        <Checkbox label={checkboxLabel} checked={conviction.isDomesticViolence} onChange={onChecked} />
       </Table.Cell>
       <Table.Cell>
-        <Button icon onClick={onDelete}>
+        <Button fluid icon onClick={onDelete}>
           <Icon name='close' />
         </Button>
       </Table.Cell>

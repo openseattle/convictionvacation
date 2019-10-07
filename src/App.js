@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <header className="App-header">
         <p>
           King County Conviction Vacation (Coming Soon)

@@ -31,3 +31,27 @@
     transform: rotate(360deg);
   }
 }
+
+#notes-print-area {
+  display: none;
+}
+
+@media print {
+  div.ui.grid {
+    display: none !important;
+  }
+
+  #notes-print-area {
+    display: block;
+    overflow: visible;
+    overflow-wrap: break-word;
+    white-space: pre;
+    white-space: pre-wrap;
+  }
+}
+
+@media (max-width: 767px) {
+  table.ui.table thead {
+    display: none !important;
+  }
+}
