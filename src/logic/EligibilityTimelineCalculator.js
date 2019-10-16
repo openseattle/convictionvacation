@@ -36,7 +36,7 @@ export default class EligibilityTimelineCalculator {
           } else {
             convictionOutput.reasons.notVacatableReasons.push("The latest conviction date (" + lastConvictionDateString + ") is within the last 10 years.");
           }
-          break;
+          break;  
         case CrimeClassification.FELONY_CLASS_C:
             if (yearsSinceLastConvictionDate >= 5) {
               convictionOutput.reasons.vacatableReasons.push("No new conviction within the last 5 years.");
@@ -69,17 +69,25 @@ export default class EligibilityTimelineCalculator {
 
       if (conviction.classification === CrimeClassification.MISDEMEANOR ||
           conviction.classification === CrimeClassification["GROSS MISDEMEANOR"]) {
-          if (conviction.isDomesticViolenceRelated === false) {
-            if (yearsSinceRelevantDate >= 3) {
-              convictionOutput.reasons.vacatableReasons.push("3 year has passed since the Relevant Date");
+          if (conviction.isDuiRelated === true) {
+            if (yearsSinceRelevantDate >= 10) {
+              convictionOutput.reasons.vacatableReasons.push("Conviction involves DUI, 10 year has passed since the Relevant Date");
             } else {
-              convictionOutput.reasons.notVacatableReasons.push("3 years has not passed since the Relevant Date (" + relevantDateString + ")");
+              convictionOutput.reasons.notVacatableReasons.push("Conviction involves DUI, 10 years has not passed since the Relevant Date (" + relevantDateString + ").");
             }
           } else {
-            if (yearsSinceRelevantDate >= 5) {
-              convictionOutput.reasons.vacatableReasons.push("Conviction involves Domestic Violence, 5 year has passed since the Relevant Date (completion of sentence and any treatment ordered)");
+            if (conviction.isDomesticViolenceRelated === true) {
+              if (yearsSinceRelevantDate >= 5) {
+                convictionOutput.reasons.vacatableReasons.push("Conviction involves Domestic Violence, 5 year has passed since the Relevant Date (completion of sentence and any treatment ordered)");
+              } else {
+                convictionOutput.reasons.notVacatableReasons.push("Conviction involves Domestic Violence, 5 year has not passed since the Relevant Date (" + relevantDateString + ")");
+              }
             } else {
-              convictionOutput.reasons.notVacatableReasons.push("Conviction involves Domestic Violence, 5 year has not passed since the Relevant Date (" + relevantDateString + ")");
+              if (yearsSinceRelevantDate >= 3) {
+                convictionOutput.reasons.vacatableReasons.push("3 year has passed since the Relevant Date");
+              } else {
+                convictionOutput.reasons.notVacatableReasons.push("3 years has not passed since the Relevant Date (" + relevantDateString + ")");
+              }
             }
           }
         }

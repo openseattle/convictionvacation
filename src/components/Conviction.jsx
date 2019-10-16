@@ -51,11 +51,17 @@ const Conviction = ({
     handleChange(index, 'isDomesticViolence', checked);
   };
 
+  const onDuiChecked = (e, { checked }) => {
+    handleChange(index, 'isDuiRelated', checked);
+  };
+
   const onDelete = () => {
     handleDelete(index);
   };
 
   const checkboxLabel = showLabel  ? 'Domestic Violence' : '';
+  const checkboxDuiLabel = showLabel  ? 'DUI Related' : '';
+
   const dateLabel = showLabel ? 'Last Relevant Date (Leave blank if none)'  : '';
   React.useEffect(() => {
     const onResize = () => {
@@ -92,6 +98,9 @@ const Conviction = ({
       </Table.Cell>
       <Table.Cell>
         <Checkbox label={checkboxLabel} checked={conviction.isDomesticViolence} onChange={onChecked} />
+      </Table.Cell>
+      <Table.Cell>
+        <Checkbox label={checkboxDuiLabel} checked={conviction.isDuiRelated} onChange={onDuiChecked} />
       </Table.Cell>
       <Table.Cell>
         <Button fluid icon onClick={onDelete}>
