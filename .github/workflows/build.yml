@@ -1,4 +1,4 @@
-name: Build, Test, and Lint
+name: Build
 
 on:
   push:
@@ -39,18 +39,3 @@ jobs:
     - name: Run Tests
       run: |
         CI=true npm run test
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
-      name: Setup Node
-      with:
-        node-version: '10.x'
-    - name: Install Dependencies
-      run: |
-        npm i
-    - name: Run Lint
-      run: |
-        npm run lint
