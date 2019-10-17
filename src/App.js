@@ -9,7 +9,7 @@ function App() {
     <div>
       <header className="App-header">
         <p>
-          King County Conviction Vacation (Coming Soon)
+          King County Conviction Vacation
         </p>
       </header>
       <ConvictionCalculator />
