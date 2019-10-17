@@ -41,7 +41,7 @@ export default class EligibilityTimelineCalculator {
             if (yearsSinceLastConvictionDate >= 5) {
               convictionOutput.reasons.vacatableReasons.push("No new conviction within the last 5 years.");
             } else {
-              convictionOutput.reasons.notVacatableReasons.push("The latest conviction date (" + lastConvictionDateString + ") is within the last 10 years.");
+              convictionOutput.reasons.notVacatableReasons.push("The latest conviction date (" + lastConvictionDateString + ") is within the last 5 years.");
             }
           break;
         default:
@@ -51,6 +51,8 @@ export default class EligibilityTimelineCalculator {
     });
 
 
+    // TODO: Need to consider how the "Operating Vehicle Under Influence" can be fed into the calculator, as
+    //       current UI design does not cater for this scenario
     // 2. (Misdemeanor & Gross Misdemeanor) For each conviction, determine if it is eligible
     //    - 3 years has passed since the Relevant Date, unless:
     //      - If the conviction involves "Operating a Vehicle Under Influence"
