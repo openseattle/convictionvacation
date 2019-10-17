@@ -7,7 +7,8 @@ on:
   schedule:
     - cron: 0 10 * * 1
 
-  publish:
+jobs:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
