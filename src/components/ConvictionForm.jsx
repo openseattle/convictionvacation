@@ -26,6 +26,10 @@ const Headers = [
     width: '1'
   },
   {
+    text: 'DUI Related',
+    width: '1'
+  },
+  {
     text: null,
     width: '1'
   }

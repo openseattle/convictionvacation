@@ -37,6 +37,7 @@ const ConvictionCalculator = () => {
       conviction.name,
       conviction.classification === 'unclear' ? null : conviction.classification,
       conviction.isDomesticViolence,
+      conviction.isDuiRelated,
       moment(conviction.date, 'YYYY-MM-DD').toISOString()));
     const calculationDate = moment().toISOString();
     const calculatorInput = new CalculatorInput(calculationDate, convictionInputs);
