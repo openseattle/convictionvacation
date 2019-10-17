@@ -17,7 +17,7 @@ export default class EligibilityTimelineCalculator {
     let lastConvictionDate = this.calculateLastConvictionDate(input);
     let lastConvictionDateString = lastConvictionDate.format('YYYY-MM-DD')
     let yearsSinceLastConvictionDate = calculationDate.diff(lastConvictionDate, 'years');
-    
+
     input.convictions.forEach((conviction) => {
       let convictionOutput = output.getConviction(conviction.id);
 
@@ -36,7 +36,7 @@ export default class EligibilityTimelineCalculator {
           } else {
             convictionOutput.reasons.notVacatableReasons.push("The latest conviction date (" + lastConvictionDateString + ") is within the last 10 years.");
           }
-          break;  
+          break;
         case CrimeClassification.FELONY_CLASS_C:
             if (yearsSinceLastConvictionDate >= 5) {
               convictionOutput.reasons.vacatableReasons.push("No new conviction within the last 5 years.");
@@ -46,13 +46,11 @@ export default class EligibilityTimelineCalculator {
           break;
         default:
             convictionOutput.reasons.errors.push("Crime Classification not specified.");
-          break; 
+          break;
       }
     });
 
 
-    // TODO: Need to consider how the "Operating Vehicle Under Influence" can be fed into the calculator, as
-    //       current UI design does not cater for this scenario
     // 2. (Misdemeanor & Gross Misdemeanor) For each conviction, determine if it is eligible
     //    - 3 years has passed since the Relevant Date, unless:
     //      - If the conviction involves "Operating a Vehicle Under Influence"
@@ -62,7 +60,7 @@ export default class EligibilityTimelineCalculator {
 
     input.convictions.forEach((conviction) => {
       let convictionOutput = output.getConviction(conviction.id);
-      
+
       let relevantDate = moment(conviction.relevantDate);
       let relevantDateString = relevantDate.format('YYYY-MM-DD')
       let yearsSinceRelevantDate = calculationDate.diff(relevantDate, 'years');
@@ -106,7 +104,7 @@ export default class EligibilityTimelineCalculator {
       let yearsSinceRelevantDate = calculationDate.diff(relevantDate, 'years');
 
       // TODO: Verify if this is only applicable to Felonies
-      if (conviction.classification === CrimeClassification.FELONY_CLASS_C || 
+      if (conviction.classification === CrimeClassification.FELONY_CLASS_C ||
           conviction.classification === CrimeClassification.FELONY_CLASS_B) {
         if (relevantDate >= moment('1984-07-01')) {
           convictionOutput.reasons.vacatableReasons.push("Offense's Relevant Date (committed) is after July 1st, 1984.");
@@ -137,7 +135,7 @@ export default class EligibilityTimelineCalculator {
     return output;
   }
 
-  createSkeletonCalculatorOutput(input) { 
+  createSkeletonCalculatorOutput(input) {
     let outputConvictionSkeletons = input.convictions.map(inputConviction => {
       return new ConvictionOutput(inputConviction.id, null, new ConvictionVacatableReasons([],[],[]));
     });
