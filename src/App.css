@@ -32,11 +32,11 @@
   }
 }
 
-#notes-print-area {
+#notes-print-area, .results-table-header {
   display: none;
 }
 
-@media print {
+@media only print {
   div.ui.grid {
     display: none !important;
   }
@@ -50,8 +50,12 @@
   }
 }
 
-@media (max-width: 767px) {
+@media only screen and (max-width: 767px) {
   table.ui.table thead {
     display: none !important;
+  }
+
+  .results-table-header {
+    display: inline;
   }
 }

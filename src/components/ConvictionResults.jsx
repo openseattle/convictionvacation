@@ -57,15 +57,21 @@ const ConvictionResults = ({
           {convictions.map(({ id, crime, vacatable, reasons }) =>
             <Table.Row key={id}>
               <Table.Cell>
+                <b className='results-table-header'>{`${Headers[0].text}: `}</b>
                 {id}
               </Table.Cell>
               <Table.Cell>
+                <b className='results-table-header'>{`${Headers[1].text.slice(0, -1)}: `}</b>
                 {crime}
               </Table.Cell>
-              <Table.Cell style={{color: vacatable ? 'green' : 'red'}}>
-                <b>{vacatable ? 'Yes': 'No'}</b>
+              <Table.Cell>
+                <b className='results-table-header'>{`${Headers[2].text}: `}</b>
+                <b style={{ color: vacatable ? 'green' : 'red' }}>
+                  {vacatable ? 'Yes' : 'No'}
+                </b>
               </Table.Cell>
               <Table.Cell>
+                <b className='results-table-header'>{`${Headers[3].text}: `}</b>
                 <List bulleted>
                   {reasons.map(reason => <List.Item key={reason}>{reason}</List.Item>)}
                 </List>
