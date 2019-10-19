@@ -1,7 +1,7 @@
 # Conviction Vacation
 
 [![Build Status](https://github.com/openseattle/convictionvacation/workflows/Build/badge.svg)](https://github.com/openseattle/convictionvacation/actions)
-[![Deploy Status](https://github.com/openseattle/convictionvacation/workflows/Deploy/badge.svg)](http://openseattle.org/convictionvacation/)
+[![Deployment Status](https://github.com/openseattle/convictionvacation/workflows/Deployment/badge.svg)](http://openseattle.org/convictionvacation/)
 
 Automating conviction vacation in King County.
 
