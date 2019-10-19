@@ -1,4 +1,4 @@
-name: Build and Test Any Branch
+name: Test PR
 
 on: pull_request
 
