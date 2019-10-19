@@ -1,0 +1,26 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    # <minute [0,59]> <hour [0,23]> <day of the month [1,31]> <month of the year [1,12]> <day of the week [0,6]>
+    # https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07
+    # Run every Monday at 18:00:00 UTC (Monday at 10:00:00 PST)
+    - cron: '0 18 * * 1'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - uses: JamesIves/github-pages-deploy-action@master
+      name: Run Deploy
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BASE_BRANCH: master # The branch the action should deploy from.
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: build # The folder the action should deploy.
+        BUILD_SCRIPT: npm i && npm run-script predeploy # The build script the action should run prior to deploying.
