@@ -19,7 +19,8 @@ let singleConvictionTestData = [
     ["Felony B No New Conviction Past 10 Years", CrimeClassification.FELONY_CLASS_B, false, false, "1990-01-01", "2019-01-01", true],
     ["Felony C No New Conviction Past 5 Years", CrimeClassification.FELONY_CLASS_C, false, false, "2013-01-01", "2019-01-01", true],
     ["Felony B Before 1st July, 1984", CrimeClassification.FELONY_CLASS_B, false, false, "1984-06-30", "2019-01-01", false],
-    ["Felony C Before 1st July, 1984", CrimeClassification.FELONY_CLASS_C, false, false, "1984-06-30", "2019-01-01", false]
+    ["Felony C Before 1st July, 1984", CrimeClassification.FELONY_CLASS_C, false, false, "1984-06-30", "2019-01-01", false],
+    ["Marijuana possesion", CrimeClassification.MARIJUANA_MISDEMEANOR, false, false, "2019-06-30", "2019-11-01", true],
 ]
 test.each(singleConvictionTestData)(
     'Single conviction with crime="%s", classification="%s", withDomesticViolence="%s" and isDUI="%s" relevant date of "%s" and calculationDate="%s"',

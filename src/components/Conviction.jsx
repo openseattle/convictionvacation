@@ -20,6 +20,11 @@ const convictionClassificationOptions = [
     text: 'Misdemeanor'
   },
   {
+    key: CrimeClassification.MARIJUANA_MISDEMEANOR,
+    value: CrimeClassification.MARIJUANA_MISDEMEANOR,
+    text: 'Marijuana Misdemeanor'
+  },
+  {
     key: CrimeClassification['GROSS MISDEMEANOR'],
     value: CrimeClassification['GROSS MISDEMEANOR'],
     text: 'Gross Misdemeanor'

@@ -19,7 +19,7 @@ export default class EligibilityTimelineCalculator {
         //      Class B Felony - no new conviction in the past 10 years
         //      Class C Felony - no new conviction in the past 5 years
         let lastConvictionDate = this.calculateLastConvictionDate(input);
-        let lastConvictionDateString = lastConvictionDate.format('YYYY-MM-DD')
+        let lastConvictionDateString = lastConvictionDate.format('YYYY-MM-DD');
         let yearsSinceLastConvictionDate = calculationDate.diff(lastConvictionDate, 'years');
 
         input.convictions.forEach((conviction) => {
@@ -35,6 +35,9 @@ export default class EligibilityTimelineCalculator {
                             `The latest conviction date ${lastConvictionDateString} is within the last 3 years.`
                         );
                     }
+                    break;
+                case CrimeClassification.MARIJUANA_MISDEMEANOR:
+                    convictionOutput.reasons.vacatableReasons.push("All marijuana misdemeanors are vacatable.");
                     break;
                 case CrimeClassification.FELONY_CLASS_B:
                     if (yearsSinceLastConvictionDate >= 10) {
@@ -173,6 +176,7 @@ export default class EligibilityTimelineCalculator {
 
     calculateLastConvictionDate(input) {
         let sortedConvictionDateStrings = input.convictions
+            .filter(conviction => conviction.classification !== CrimeClassification.MARIJUANA_MISDEMEANOR)
             .map(conviction => conviction.relevantDate)
             .filter(conviction => conviction !== undefined)
             .sort();
