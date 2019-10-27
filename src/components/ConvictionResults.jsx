@@ -24,6 +24,7 @@ const ConvictionResults = ({
   calculatorInput,
   calculatorOutput,
   clientName,
+  clientDOB,
   handleBack,
   handleReset
 }) => {

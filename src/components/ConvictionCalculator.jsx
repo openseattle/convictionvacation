@@ -15,6 +15,7 @@ const ConvictionCalculator = () => {
   const calculatorOutputRef = React.useRef();
   const [convictions, setConvictions] = React.useState([]);
   const [clientName, setClientName] = React.useState('');
+  const [clientDOB, setClientDOB] = React.useState('');
   const [notes, setNotes] = React.useState('');
 
   const addConvictions = (num) => {
@@ -40,7 +41,8 @@ const ConvictionCalculator = () => {
       conviction.isDuiRelated,
       moment(conviction.date, 'YYYY-MM-DD').toISOString()));
     const calculationDate = moment().toISOString();
-    const calculatorInput = new CalculatorInput(calculationDate, convictionInputs);
+    const clientDOBString = moment(clientDOB, 'YYYY-MM-DD').toISOString();
+    const calculatorInput = new CalculatorInput(calculationDate, clientDOBString, convictionInputs);
     calculatorInputRef.current = calculatorInput;
     const calculatorOutput = calculator.calculate(calculatorInput);
     calculatorOutputRef.current = calculatorOutput;
@@ -93,15 +95,20 @@ const ConvictionCalculator = () => {
           calculatorInput={calculatorInputRef.current}
           calculatorOutput={calculatorOutputRef.current}
           clientName={clientName}
+          clientDOB={clientDOB}
           handleBack={handleBack}
-          handleReset={handleReset} /> :
+          handleReset={handleReset}
+        /> :
         <ConvictionForm
           addConvictions={addConvictions}
           convictions={convictions}
           handleChange={handleChange}
           handleDelete={handleDelete}
           clientName={clientName}
-          setClientName={setClientName} />}
+          setClientName={setClientName}
+          clientDOB={clientDOB}
+          setClientDOB={setClientDOB}
+        />}
 
       <Grid padded stackable columns={2}>
         <Grid.Row>

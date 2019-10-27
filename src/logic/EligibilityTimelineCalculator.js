@@ -12,6 +12,7 @@ export default class EligibilityTimelineCalculator {
 
         let output = this.createSkeletonCalculatorOutput(input);
         let calculationDate = moment(input.calculationDate);
+        let clientDOB = moment(input.clientDOB);
 
         // 1. Determine the most recent conviction date, then check whether date between NOW and the date
         //    recent conviction will make any of the convictions ineligible for vacation
@@ -36,8 +37,17 @@ export default class EligibilityTimelineCalculator {
                         );
                     }
                     break;
+                // Marijuana misdemeanors are treated differently, they are vacatable regardless of time of offense
+                // as long as the client was at least 21 years old when charged. These convictions should also not
+                // affect eligibility of vacation of other convictions.
                 case CrimeClassification.MARIJUANA_MISDEMEANOR:
-                    convictionOutput.reasons.vacatableReasons.push("All marijuana misdemeanors are vacatable.");
+                    let relevantDate = moment(conviction.relevantDate);
+                    let ageAtOffenseTime = relevantDate.diff(clientDOB, 'years')
+                    if (ageAtOffenseTime >= 21) {
+                        convictionOutput.reasons.vacatableReasons.push("Was at least 21 years old at time of offense.");
+                    } else {
+                        convictionOutput.reasons.notVacatableReasons.push("Was less than 21 years old at time of offense.");
+                    }
                     break;
                 case CrimeClassification.FELONY_CLASS_B:
                     if (yearsSinceLastConvictionDate >= 10) {

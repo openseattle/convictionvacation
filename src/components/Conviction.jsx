@@ -43,7 +43,7 @@ const Conviction = ({
   handleDelete
 }) => {
   const [showLabel, setShowLabel] = React.useState(window.matchMedia('(max-width:767px)').matches);
-  
+
   const onChange = (e, { value }) => {
     handleChange(index, e.currentTarget.name, value);
   };
