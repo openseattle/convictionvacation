@@ -1,6 +1,7 @@
 export class CalculatorInput {
-  constructor(calculationDate, convictions) {
+  constructor(calculationDate, clientDOB, convictions) {
     this.calculationDate = calculationDate;
+    this.clientDOB = clientDOB;
     this.convictions = convictions; // List of Conviction Input
   }
 }

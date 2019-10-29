@@ -20,21 +20,28 @@ Currently the entire system is a single page application that runs on
 [GitHub Pages](https://openseattle.github.com/convictionvacation) and uses React. In this future this may change as we
 add more features and develop the system further but this works well for now.
 
-### Available Scripts
 In the project directory, you can run:
 
-* [`npm start`](#npm-start) to run the app in development mode.
-* [`npm test`](#npm-test) to launch the test runner in interactive watch mode.
-* [`npm run build`](#npm-run-build) to build the app for production and places it in the `build` folder.
+1. Ensure you have `nodejs` installed on your machine using whatever system package manager, on Mac using [homebrew](https://brew.sh) run:
+
+    ```
+    brew install nodejs
+    ```
+1. Install project dependecies
+
+    ```
+    npm install
+    ```
+1. Start the app in development mode
+
+    ```
+    npm start
+    ```
+1. Visit [http://localhost:3000](http://localhost:3000) to view it in the browser
 
 [Further React Documentation](docs/react.md)
 
-#### `npm start`
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### Other Commands
 
 #### `npm test`
 
