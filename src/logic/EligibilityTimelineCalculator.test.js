@@ -1,5 +1,3 @@
-import moment, { isDuration } from 'moment';
-
 import ConvictionCalculator from './EligibilityTimelineCalculator';
 
 import CrimeClassification from "./type/CrimesClassifications";
