@@ -28,7 +28,7 @@ export default class EligibilityTimelineCalculator {
 
             switch (conviction.classification) {
                 case CrimeClassification.MISDEMEANOR:
-                case CrimeClassification["GROSS MISDEMEANOR"]:
+                case CrimeClassification.GROSS_MISDEMEANOR:
                     if (yearsSinceLastConvictionDate >= 3) {
                         convictionOutput.reasons.vacatableReasons.push("No new conviction within the last 3 years.");
                     } else {
@@ -88,7 +88,7 @@ export default class EligibilityTimelineCalculator {
             let yearsSinceRelevantDate = calculationDate.diff(relevantDate, 'years');
 
             if (conviction.classification === CrimeClassification.MISDEMEANOR ||
-                conviction.classification === CrimeClassification["GROSS MISDEMEANOR"]) {
+                conviction.classification === CrimeClassification.GROSS_MISDEMEANOR) {
                 if (conviction.isDuiRelated === true) {
                     if (yearsSinceRelevantDate >= 10) {
                         convictionOutput.reasons.vacatableReasons.push(

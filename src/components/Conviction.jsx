@@ -20,8 +20,8 @@ const convictionClassificationOptions = [
     text: 'Misdemeanor'
   },
   {
-    key: CrimeClassification['GROSS MISDEMEANOR'],
-    value: CrimeClassification['GROSS MISDEMEANOR'],
+    key: CrimeClassification.GROSS_MISDEMEANOR,
+    value: CrimeClassification.GROSS_MISDEMEANOR,
     text: 'Gross Misdemeanor'
   },
   {
@@ -38,7 +38,7 @@ const Conviction = ({
   handleDelete
 }) => {
   const [showLabel, setShowLabel] = React.useState(window.matchMedia('(max-width:767px)').matches);
-  
+
   const onChange = (e, { value }) => {
     handleChange(index, e.currentTarget.name, value);
   };
