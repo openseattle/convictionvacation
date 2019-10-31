@@ -12,6 +12,7 @@ export default class EligibilityTimelineCalculator {
 
         let output = this.createSkeletonCalculatorOutput(input);
         let calculationDate = moment(input.calculationDate);
+        let clientDOB = moment(input.clientDOB);
 
         // 1. Determine the most recent conviction date, then check whether date between NOW and the date
         //    recent conviction will make any of the convictions ineligible for vacation
@@ -19,7 +20,7 @@ export default class EligibilityTimelineCalculator {
         //      Class B Felony - no new conviction in the past 10 years
         //      Class C Felony - no new conviction in the past 5 years
         let lastConvictionDate = this.calculateLastConvictionDate(input);
-        let lastConvictionDateString = lastConvictionDate.format('YYYY-MM-DD')
+        let lastConvictionDateString = lastConvictionDate.format('YYYY-MM-DD');
         let yearsSinceLastConvictionDate = calculationDate.diff(lastConvictionDate, 'years');
 
         input.convictions.forEach((conviction) => {
@@ -34,6 +35,18 @@ export default class EligibilityTimelineCalculator {
                         convictionOutput.reasons.notVacatableReasons.push(
                             `The latest conviction date ${lastConvictionDateString} is within the last 3 years.`
                         );
+                    }
+                    break;
+                // Marijuana misdemeanors are treated differently, they are vacatable regardless of time of offense
+                // as long as the client was at least 21 years old when charged. These convictions should also not
+                // affect eligibility of vacation of other convictions.
+                case CrimeClassification.MARIJUANA_MISDEMEANOR:
+                    let relevantDate = moment(conviction.relevantDate);
+                    let ageAtOffenseTime = relevantDate.diff(clientDOB, 'years')
+                    if (ageAtOffenseTime >= 21) {
+                        convictionOutput.reasons.vacatableReasons.push("Was at least 21 years old at time of offense.");
+                    } else {
+                        convictionOutput.reasons.notVacatableReasons.push("Was less than 21 years old at time of offense.");
                     }
                     break;
                 case CrimeClassification.FELONY_CLASS_B:
@@ -173,6 +186,7 @@ export default class EligibilityTimelineCalculator {
 
     calculateLastConvictionDate(input) {
         let sortedConvictionDateStrings = input.convictions
+            .filter(conviction => conviction.classification !== CrimeClassification.MARIJUANA_MISDEMEANOR)
             .map(conviction => conviction.relevantDate)
             .filter(conviction => conviction !== undefined)
             .sort();
