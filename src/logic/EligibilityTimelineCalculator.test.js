@@ -9,7 +9,7 @@ import {
 let TEST_ID = "TEST_ID";
 
 // Parameterized test table with the following format:
-// Crime Name, Crime Classification, Is Domestic Violence Related, Is DUI Related, Crime Relevant Date, Calculation Date, Expected Conviction Vacatable
+// Crime Name, Crime Classification, Is Domestic Violence Related, Is DUI Related, Crime Relevant Date, Calculation Date, Client DOB, Expected Conviction Vacatable
 let singleConvictionTestData = [
     // Test cases for time past since conviction's relevant date
     // Vacatable test cases
