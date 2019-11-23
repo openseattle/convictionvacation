@@ -25,7 +25,7 @@ function GenHTML(form_obj, fields_arr, new_dimension) {
                 (acc, field_obj) => {
                     //only process fields in current page
                     if(field_obj.page_number === page_no) {
-
+                        acc += genField(field_obj);
                     }
                     return acc;
                 },
@@ -38,11 +38,32 @@ function GenHTML(form_obj, fields_arr, new_dimension) {
     )
 }
 
+function genField(field_obj) {
+    var width = field_obj.top_right.x - field_obj.bottom_left.x;
+    var height = field_obj.top_right.y - field_obj.bottom_left.y;
+    var top = field_obj.top_right.y;
+    var left = field_obj.bottom_left.x;
+    return `
+        <svg id="${field_obj.id}" class="text-box"
+            style="top:${top}px;left:${left}px"  width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+            <text x="0" y="75%" textLength="100%">
+                <!-- populate value here -->
+            </text>
+        </svg>
+        `
+}
+
 function genOpenPageDiv(id, bg_image_url) {
     return `
         <div
             id="${id}",
             background_img:"${bg_image_url}"
-        >       
+        >
+
+        <style>
+            .text-box {
+                position: absolute;
+            }
+        </style>
     `
 }
