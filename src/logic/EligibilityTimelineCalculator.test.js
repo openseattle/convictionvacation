@@ -2,6 +2,7 @@ import moment, { isDuration } from 'moment';
 
 import ConvictionCalculator from './EligibilityTimelineCalculator';
 
+// import CrimeClassification from "./type/CrimesClassifications";
 import CrimeClassification from "./type/CrimesClassifications";
 import {
     ConvictionInput,
@@ -22,6 +23,7 @@ let singleConvictionTestData = [
     ["Felony C Before 1st July, 1984", CrimeClassification.FELONY_CLASS_C, false, false, "1984-06-30", "2019-01-01", "2019-11-01", false],
     ["Marijuana possesion, under 21 at offense time", CrimeClassification.MARIJUANA_MISDEMEANOR, false, false, "2019-06-30", "2019-11-01", "1999-01-01", false],
     ["Marijuana possesion, 21+ at offense time", CrimeClassification.MARIJUANA_MISDEMEANOR, false, false, "2019-06-30", "2019-11-01", "1990-01-01", true],
+    ["Felony A, 21+ at offense time", CrimeClassification.FELONY_CLASS_A, false, false, "2019-06-30", "2019-11-01", "1990-01-01", false]
 ]
 test.each(singleConvictionTestData)(
     'Single conviction with crime="%s", classification="%s", withDomesticViolence="%s" and isDUI="%s" relevant date of "%s" and calculationDate="%s"',
@@ -30,7 +32,8 @@ test.each(singleConvictionTestData)(
         let conviction = new ConvictionInput(TEST_ID, crime, classification, isDV, isDUI, relevantDate);
         let input = new CalculatorInput(calculationDate, clientDOB, [conviction]);
         let actualCalculatorOutput = calculator.calculate(input);
-
+        console.log(input);
+        console.log(actualCalculatorOutput);
         expect(actualCalculatorOutput.getConviction(TEST_ID).vacatable).toBe(expectedVacatable);
     },);
 
