@@ -105,7 +105,7 @@ function genOpenPageDiv(id, bg_image_url) {
 
 function getSharedPrintableStyles(page_style) {
     return `
-        <stlye>
+        <style>
             @media print {
                 ${page_style}
                 ${getTextBoxCSS()}
