@@ -6,18 +6,21 @@ class ScaleUtil {
         this.new_width = new_width;
     }
 
-    scaleWidth = (old_x) => this.width_ratio * old_x;
+    scaleWidth(old_x) {return this.width_ratio * old_x};
 
-    scaleHeight = (old_y) => this.height_ratio * old_y;
+    scaleHeight(old_y) {return this.height_ratio * old_y};
 
-    getPageOffset = (page_number) => 
-                        (page_number + 1) * new_height; //page_number is 0 indexed
+    getPageOffset(page_number) {
+        return (page_number + 1) * new_height; //page_number is 0 indexed
+    }
 
-    getNewXOffset = (page_number, old_x_offset) => 
-                        getPageOffset(page_number) + this.scaleWidth(old_x_offset);
+    getNewXOffset(page_number, old_x_offset) { 
+        return getPageOffset(page_number) + this.scaleWidth(old_x_offset);
+    }
 
-    getNewYOffset = (page_number, old_y_offset) => 
-                        getPageOffset(page_number) + this.scaleHeight(old_y_offset);
+    getNewYOffset(page_number, old_y_offset) {
+        return getPageOffset(page_number) + this.scaleHeight(old_y_offset);
+    }
 }
 
 function GenHTML(form_obj, fields_arr, new_dimension) {
@@ -26,7 +29,7 @@ function GenHTML(form_obj, fields_arr, new_dimension) {
         new_dimension.width, new_dimension.height);
     
     //loop over all pages    
-    const pages = form_pages.reduce(
+    const pages = form_obj.pages.reduce(
             (acc, page_obj, page_no) => {
 
                 acc += genOpenPageDiv(page_obj.id, page_obj.url);
@@ -54,7 +57,7 @@ function GenHTML(form_obj, fields_arr, new_dimension) {
         </body>
     `;
 
-    const shared_styles = getSharedPrintableStyles(getPageCSS(dimension.width, dimension.height))
+    const shared_styles = getSharedPrintableStyles(getPageCSS(new_dimension.width, new_dimension.height))
 
     const html = `
         <html>
@@ -127,3 +130,36 @@ function getPageCSS(width, height) {
         }
     `
 }
+
+
+var oldDim = {width: 30, height: 45};
+var newDim = {width: 21, height: 30};
+
+var pages = [
+    {
+        id:"page1",
+        url:"#333"
+    }
+];
+
+var fields = [
+    {
+        id:"field1",
+        bottom_left: {
+            x: 3,
+            y: 6
+        },
+        top_right: {
+            x: 7,
+            y: 4
+        },
+        page: 0
+    }
+]
+
+var form = {
+    dimension: oldDim,
+    pages: pages
+}
+
+console.log(GenHTML(form, fields, newDim));
