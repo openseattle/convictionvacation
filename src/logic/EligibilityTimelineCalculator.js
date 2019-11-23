@@ -23,8 +23,17 @@ export default class EligibilityTimelineCalculator {
         let lastConvictionDateString = lastConvictionDate.format('YYYY-MM-DD');
         let yearsSinceLastConvictionDate = calculationDate.diff(lastConvictionDate, 'years');
 
+
         input.convictions.forEach((conviction) => {
             let convictionOutput = output.getConviction(conviction.id);
+
+            // Check to see if the conviction is DUI-related.
+            // DUI-related convictions are never vacatable.
+            if (conviction.isDuiRelated === true) {
+                convictionOutput.reasons.notVacatableReasons.push(
+                    "Conviction involves DUI, never vacatable"
+                );
+            }
 
             switch (conviction.classification) {
                 case CrimeClassification.MISDEMEANOR:
@@ -76,7 +85,7 @@ export default class EligibilityTimelineCalculator {
         // 2. (Misdemeanor & Gross Misdemeanor) For each conviction, determine if it is eligible
         //    - 3 years has passed since the Relevant Date, unless:
         //      - If the conviction involves "Operating a Vehicle Under Influence"
-        //        - 10 year has passed since the arrest date
+        //        - Never eligible
         //      - If the conviction involved "Domestic Violence"
         //        - 5 years has passed since the sentence is completed
 
@@ -90,15 +99,9 @@ export default class EligibilityTimelineCalculator {
             if (conviction.classification === CrimeClassification.MISDEMEANOR ||
                 conviction.classification === CrimeClassification["GROSS MISDEMEANOR"]) {
                 if (conviction.isDuiRelated === true) {
-                    if (yearsSinceRelevantDate >= 10) {
-                        convictionOutput.reasons.vacatableReasons.push(
-                            "Conviction involves DUI, 10 year has passed since the Relevant Date"
-                        );
-                    } else {
-                        convictionOutput.reasons.notVacatableReasons.push(
-                            `Conviction involves DUI, 10 years has not passed since the Relevant Date ${relevantDateString}`
-                        );
-                    }
+                    convictionOutput.reasons.notVacatableReasons.push(
+                        "Conviction involves DUI, never vacatable"
+                    );
                 } else {
                     if (conviction.isDomesticViolenceRelated === true) {
                         if (yearsSinceRelevantDate >= 5) {
