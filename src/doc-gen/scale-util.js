@@ -2,11 +2,22 @@ class ScaleUtil {
     contructor(original_width, original_height, new_width, new_height) {
         this.width_ratio = new_width / original_width ;
         this.height_ratio =  new_height / original_height;
+        this.new_height = new_height;
+        this.new_width = new_width;
     }
 
     scaleWidth = (old_x) => this.width_ratio * old_x;
 
     scaleHeight = (old_y) => this.height_ratio * old_y;
+
+    getPageOffset = (page_number) => 
+                        (page_number + 1) * new_height; //page_number is 0 indexed
+
+    getNewXOffset = (page_number, old_x_offset) => 
+                        getPageOffset(page_number) + this.scaleWidth(old_x_offset);
+
+    getNewYOffset = (page_number, old_y_offset) => 
+                        getPageOffset(page_number) + this.scaleHeight(old_y_offset);
 }
 
 function GenHTML(form_obj, fields_arr, new_dimension) {
@@ -35,7 +46,7 @@ function GenHTML(form_obj, fields_arr, new_dimension) {
             return acc;
         },
         ""
-    )
+    );
 }
 
 function genOpenPageDiv(id, bg_image_url) {
