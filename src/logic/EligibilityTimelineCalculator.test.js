@@ -16,6 +16,7 @@ let TEST_ID = "TEST_ID";
 let singleConvictionTestData = [
     ["Misdemeanor No New Conviction Past 3 Years", CrimeClassification.MISDEMEANOR, false, false, "2014-01-01", "2019-01-01", "2019-11-01", true],
     ["Gross Misdemeanor No New Conviction Past 3 Years", CrimeClassification["GROSS MISDEMEANOR"], false, false, "2014-01-01", "2019-01-01", "2019-11-01", true],
+    //["Felony A No New Conviction Past 10 Years", CrimeClassification.FELONY_CLASS_A, false, false, "1990-01-01", "2019-01-01", "2019-11-01", false],
     ["Felony B No New Conviction Past 10 Years", CrimeClassification.FELONY_CLASS_B, false, false, "1990-01-01", "2019-01-01", "2019-11-01", true],
     ["Felony C No New Conviction Past 5 Years", CrimeClassification.FELONY_CLASS_C, false, false, "2013-01-01", "2019-01-01", "2019-11-01", true],
     ["Felony B Before 1st July, 1984", CrimeClassification.FELONY_CLASS_B, false, false, "1984-06-30", "2019-01-01", "2019-11-01", false],

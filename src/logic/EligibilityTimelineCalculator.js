@@ -14,6 +14,25 @@ export default class EligibilityTimelineCalculator {
         let calculationDate = moment(input.calculationDate);
         let clientDOB = moment(input.clientDOB);
 
+        // 0. Determine which cases are automatically ineligible for vacation
+        //    DUI-related
+        //    ClassA Felony
+
+        input.convictions.forEach((conviction) => {
+            let convictionOutput = output.getConviction(conviction.id);
+            // Check to see if the conviction is DUI-related.
+            // DUI-related convictions are never vacatable.
+            if (conviction.isDuiRelated === true) {
+                convictionOutput.reasons.notVacatableReasons.push(
+                    "Conviction involves DUI, never vacatable"
+                );
+            }
+
+            // Check to se if the conviction is a class A felony.
+        });
+
+        
+
         // 1. Determine the most recent conviction date, then check whether date between NOW and the date
         //    recent conviction will make any of the convictions ineligible for vacation
         //      Misdemeanor & Gross Misdemeanor - no new conviction in the past 3 years
@@ -26,15 +45,6 @@ export default class EligibilityTimelineCalculator {
 
         input.convictions.forEach((conviction) => {
             let convictionOutput = output.getConviction(conviction.id);
-
-            // Check to see if the conviction is DUI-related.
-            // DUI-related convictions are never vacatable.
-            if (conviction.isDuiRelated === true) {
-                convictionOutput.reasons.notVacatableReasons.push(
-                    "Conviction involves DUI, never vacatable"
-                );
-            }
-
             switch (conviction.classification) {
                 case CrimeClassification.MISDEMEANOR:
                 case CrimeClassification["GROSS MISDEMEANOR"]:
