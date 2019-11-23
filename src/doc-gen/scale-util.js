@@ -11,15 +11,15 @@ class ScaleUtil {
     scaleHeight(old_y) {return this.height_ratio * old_y};
 
     getPageOffset(page_number) {
-        return (page_number + 1) * new_height; //page_number is 0 indexed
+        return (page_number + 1) * this.new_height; //page_number is 0 indexed
     }
 
     getNewXOffset(page_number, old_x_offset) { 
-        return getPageOffset(page_number) + this.scaleWidth(old_x_offset);
+        return this.getPageOffset(page_number) + this.scaleWidth(old_x_offset);
     }
 
     getNewYOffset(page_number, old_y_offset) {
-        return getPageOffset(page_number) + this.scaleHeight(old_y_offset);
+        return this.getPageOffset(page_number) + this.scaleHeight(old_y_offset);
     }
 }
 
@@ -107,7 +107,7 @@ function getSharedPrintableStyles(page_style) {
     return `
         <stlye>
             @media print {
-                ${page_style},
+                ${page_style}
                 ${getTextBoxCSS()}
             }
         </style>
@@ -153,7 +153,7 @@ var fields = [
             x: 7,
             y: 4
         },
-        page: 0
+        page_number: 0
     }
 ]
 
