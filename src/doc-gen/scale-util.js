@@ -48,12 +48,3 @@ function GenHTML(form_obj, fields_arr, new_dimension) {
         ""
     );
 }
-
-function genOpenPageDiv(id, bg_image_url) {
-    return `
-        <div
-            id="${id}",
-            background_img:"${bg_image_url}"
-        >       
-    `
-}
