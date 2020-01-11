@@ -13,7 +13,7 @@ class ScaleUtil {
     scaleHeight(old_y) {return this.height_ratio * old_y};
 
     getPageOffset(page_number) {
-        return (page_number + 1) * this.new_height; //page_number is 0 indexed
+        return (page_number) * this.new_height;
     }
 
     getNewXOffset(page_number, old_x_offset) { 
@@ -78,7 +78,7 @@ function genField(field_obj, scale_util) {
     var left = scale_util.getNewXOffset(field_obj.page_number, field_obj.bottom_left.x);
     return `
         <svg class="text-box"
-            style="top:${top}${width_units};left:${left}${width_units}"  width="${width}${width_units}" height="${height}${width_units}" viewBox="0 0 ${width}in ${height}in">
+            style="top:${top}${width_units};left:${left}${width_units}"  width="${width}${width_units}" height="${height}${width_units}">
             <text id="${field_obj.id}" x="0" y="75%">
                 <!-- populate value here -->
                 content
@@ -92,18 +92,18 @@ function genOpenPageDiv(id, bg_image_url) {
         <div
             id="${id}"
             class="page"
-            style='background: url("${bg_image_url}") no-repeat center center fixed; background-size: cover;'
         >
+            <img src="${bg_image_url}">
     `
 }
+
 
 function getSharedPrintableStyles(page_style) {
     return `
         <style>
-            @media print {
-                ${page_style}
-                ${getTextBoxCSS()}
-            }
+            ${page_style}
+            ${getTextBoxCSS()}
+            ${getImgCSS()}
         </style>
     `
 }
@@ -122,6 +122,16 @@ function getPageCSS(width, height) {
             width: ${width}${width_units};
             height: ${height}${width_units};
             position: relative;
+            display: inline-block;
+        }
+    `
+}
+
+function getImgCSS() {
+    return `
+        img {
+            max-width: 100%;
+            max-height: 100%;
         }
     `
 }
