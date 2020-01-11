@@ -9,7 +9,9 @@ const trackingId = "UA-156075348-1";
 
 function App() {
   React.useEffect(() => {
-    ReactGA.initialize(trackingId);
+    if(process.env.NODE_ENV === 'production'){
+      ReactGA.initialize(trackingId);
+    }
   })
   return (
     <div>
