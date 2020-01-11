@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/convictionvacation/precache-manifest.6b99cfb7a1aedcca1d7e16a3cd20db1f.js"
+  "/convictionvacation/precache-manifest.494221be810fa04d6e0bad10a088de5d.js"
 );
 
 self.addEventListener('message', (event) => {
