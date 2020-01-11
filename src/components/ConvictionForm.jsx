@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactGA from 'react-ga';
 import { Button, Grid, Input, Table } from 'semantic-ui-react';
 
 import Conviction from './Conviction';
@@ -60,6 +61,10 @@ const ConvictionForm = ({
   };
 
   const handleAddConvictions = () => {
+    ReactGA.event({
+      category: "Convictions",
+      action: "user clicked button Add More Convictions",
+    });
     addConvictions(parseInt(convictionNum));
   };
 
