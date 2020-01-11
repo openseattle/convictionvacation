@@ -49,6 +49,10 @@ const ConvictionForm = ({
   const [convictionNum, setConvictionNum] = React.useState(1);
 
   const onConvictionNumChange = (e, { value }) => {
+    ReactGA.event({
+      category: "ConvictionsForm",
+      action: ("user clicked button and added " + value + " more convictions"),
+    });
     setConvictionNum(value);
   };
 
@@ -62,7 +66,7 @@ const ConvictionForm = ({
 
   const handleAddConvictions = () => {
     ReactGA.event({
-      category: "Convictions",
+      category: "ConvictionsForm",
       action: "user clicked button Add More Convictions",
     });
     addConvictions(parseInt(convictionNum));

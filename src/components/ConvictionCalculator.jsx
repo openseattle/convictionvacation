@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactGA from 'react-ga';
 import moment from 'moment';
 import { Button, Form, Grid, TextArea } from 'semantic-ui-react';
 
@@ -29,6 +30,10 @@ const ConvictionCalculator = () => {
   }, []);
 
   const handleSubmit = () => {
+    ReactGA.event({
+      category: "ConvictionsForm",
+      action: ("user clicked the submit button"),
+    });
     const filledInConvictions = convictions.filter(conviction => {
       return (
         conviction.id && conviction.name && conviction.classification && conviction.date
@@ -66,11 +71,20 @@ const ConvictionCalculator = () => {
   };
 
   const handleBack = () => {
+    ReactGA.event({
+      category: "ConvictionsCalculator",
+      action: ("user clicked the back button on the Convictions Calculator page"),
+    });
     calculatorOutputRef.current = null;
     setHasResults(false);
   };
 
   const handleReset = () => {
+    ReactGA.event({
+      category: "ConvictionsCalculator",
+      action: ("user clicked the reset button"),
+    });
+    
     calculatorInputRef.current = null;
     calculatorOutputRef.current = null;
     setConvictions([]);
@@ -81,10 +95,18 @@ const ConvictionCalculator = () => {
   };
 
   const handlePrint = () => {
+    ReactGA.event({
+      category: "ConvictionsCalculator",
+      action: ("user clicked the print button"),
+    });
     window.print();
   };
 
   const onTextAreaChange = (e, { value }) => {
+    ReactGA.event({
+      category: "ConvictionsCalculator",
+      action: ("user has changed the Notes forms"),
+    });
     setNotes(value);
   };
 
