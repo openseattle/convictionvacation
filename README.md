@@ -64,10 +64,18 @@ This image should be for development only and should not be used in production.
 
 1. Shut down the container by viewing all running containers with `docker ps -a` then `docker stop <container_name>`
 
-1. After making changes, mount the files in the container to enable hot reloading
+1. After making changes, regenerate `node_modules` then mount the files in the container to enable hot reloading.
 
    ```
+   docker run -v `pwd`:/root -p 3000:3000 openseattle/convictionvacation:0.0.1 npm install
    docker run -v `pwd`:/root -p 3000:3000 openseattle/convictionvacation:0.0.1
+   ```
+   
+   Note: Windows users will need to escape the path (See this [comment](https://github.com/moby/moby/issues/24029#issuecomment-250412919). The commands may take a few minutes.
+   
+   ```
+   docker run -v //$(pwd):/root -p 3000:3000 openseattle/convictionvacation:0.0.1 npm install
+   docker run -v //$(pwd):/root -p 3000:3000 openseattle/convictionvacation:0.0.1
    ```
 
 [Further React Documentation](docs/react.md)
