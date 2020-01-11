@@ -2,10 +2,9 @@ import React from 'react';
 import { Button, Checkbox, Icon, Input, Select, Table } from 'semantic-ui-react';
 
 import CrimeClassification from '../logic/type/CrimesClassifications';
-import ReactGA from 'react-ga';
 
-const trackingId = "UA-156070028-1";
-ReactGA.initialize(trackingId);
+import ReactGA from 'react-ga';
+const trackingId = "UA-156075348-1";
 
 const convictionClassificationOptions = [
   {
@@ -82,6 +81,10 @@ const Conviction = ({
       window.removeEventListener('resize', onResize);
     };
   }, []);
+
+  React.useEffect(() => {
+    ReactGA.initialize(trackingId);
+  })
 
   return (
     <Table.Row>
