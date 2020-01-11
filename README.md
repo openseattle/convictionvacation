@@ -39,27 +39,17 @@ In the project directory, you can run:
     ```
 1. Visit [http://localhost:3000](http://localhost:3000) to view it in the browser
 
-### Docker
+### Development Environment with Docker
 A developer workflow using Docker can be done by building the image locally or pulling from Docker Hub.
 
 This image should be for development only and should not be used in production.
 
-### Pull a pre-built image
+1. Ensure you have `docker` installed on your machine. Refer to the [Docker install instructions](https://docs.docker.com/install/) for more information.
 
 1. Pull the image from Docker Hub
 
    ```
    docker pull openseattle/convictionvacation:0.0.1
-   ```
-
-### Build and pushing a new image
-
-1. Ensure you have `docker` installed on your machine. Refer to the [Docker install instructions](https://docs.docker.com/install/) for more information.
-
-1. Build the Docker image
-
-   ```
-   docker build . -t openseattle/convictionvacation:0.0.1
    ```
 
 1. Run the image and expose port 3000
@@ -70,14 +60,15 @@ This image should be for development only and should not be used in production.
 
    Note: Environment variables can be added with a `-e` flag for [advanced configurations](https://create-react-app.dev/docs/advanced-configuration/)
 
-1. To push a new release, make sure you have write access to openseattle. Rebuild the image with a new tag and push to Docker Hub.
-
-   ```
-   docker build . -t openseattle/convictionvacation:0.0.1
-   docker push openseattle/convictionvacation:0.0.1
-   ```
-
 1. Visit [http://localhost:3000](http://localhost:3000) to view it in the browser
+
+1. Shut down the container by viewing all running containers with `docker ps -a` then `docker stop <container_name>`
+
+1. After making changes, mount the files in the container to enable hot reloading
+
+   ```
+   docker run -v `pwd`:/root -p 3000:3000 openseattle/convictionvacation:0.0.1
+   ```
 
 [Further React Documentation](docs/react.md)
 
