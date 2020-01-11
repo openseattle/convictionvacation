@@ -71,7 +71,7 @@ function GenHTML(form_obj, fields_arr, new_dimension) {
     return html;
 }
 
-function genField(field_obj, scale_util) {
+function genField(field_obj, scale_util, text_value) {
     var width = scale_util.scaleWidth(field_obj.top_right.x - field_obj.bottom_left.x);
     var height = scale_util.scaleHeight(field_obj.bottom_left.y - field_obj.top_right.y);
     var top = scale_util.getNewYOffset(field_obj.page_number, field_obj.top_right.y);
@@ -79,7 +79,7 @@ function genField(field_obj, scale_util) {
     return `
         <svg class="text-box"
             style="top:${top}${width_units};left:${left}${width_units}"  width="${width}${width_units}" height="${height}${width_units}">
-            <text id="${field_obj.id}" x="0" y="75%">
+            <text id="${field_obj.id}" x="0" y="75%" font-size="12">
                 <!-- populate value here -->
                 content
             </text>
@@ -149,62 +149,50 @@ var pages = [
 
 var fields = [
     {
-        id:"court",
+        id:"courtType",
         bottom_left: {
-            x: 3,
-            y: 6
+            x: 218,
+            y: 613
         },
         top_right: {
-            x: 7,
-            y: 4
-        },
-        page_number: 0
-    },
-    {
-        id:"convicteeName",
-        bottom_left: {
-            x: 228,
-            y: 824
-        },
-        top_right: {
-            x: 808,
-            y: 756
+            x: 594,
+            y: 586
         },
         page_number: 0
     },
     {
         id:"plaintiff",
         bottom_left: {
-            x: 224,
-            y: 728
+            x: 217,
+            y: 740
         },
         top_right: {
-            x: 796,
-            y: 672
+            x: 810,
+            y: 715
         },
         page_number: 0
     },
     {
         id:"defendant",
         bottom_left: {
-            x: 228,
-            y: 820
+            x: 220,
+            y: 830
         },
         top_right: {
-            x: 812,
-            y: 752
+            x: 810,
+            y: 795
         },
         page_number: 0
     },
     {
         id:"countyClerkName",
         bottom_left: {
-            x: 584,
-            y: 932
+            x: 580,
+            y: 940
         },
         top_right: {
             x: 1012,
-            y: 912
+            y: 905
         },
         page_number: 0
     },
@@ -212,7 +200,7 @@ var fields = [
         id:"countyName",
         bottom_left: {
             x: 320,
-            y: 1056
+            y: 1070
         },
         top_right: {
             x: 764,
@@ -224,7 +212,7 @@ var fields = [
         id:"courtName",
         bottom_left: {
             x: 260,
-            y: 1280
+            y: 1290
         },
         top_right: {
             x: 784,
@@ -236,7 +224,7 @@ var fields = [
         id:"hearingDate",
         bottom_left: {
             x: 568,
-            y: 1224
+            y: 1235
         },
         top_right: {
             x: 1032,
@@ -248,7 +236,7 @@ var fields = [
         id:"hearingTime",
         bottom_left: {
             x: 1116,
-            y: 1228
+            y: 1235
         },
         top_right: {
             x: 1276,
@@ -260,7 +248,7 @@ var fields = [
         id:"hearingAmorPm",
         bottom_left: {
             x: 1240,
-            y: 1228
+            y: 1235
         },
         top_right: {
             x: 1292,
@@ -272,7 +260,7 @@ var fields = [
         id:"dateOfSubmission",
         bottom_left: {
             x: 304,
-            y: 1488
+            y: 1510
         },
         top_right: {
             x: 776,
@@ -284,7 +272,7 @@ var fields = [
         id:"attorneyName",
         bottom_left: {
             x: 864,
-            y: 1520
+            y: 1535
         },
         top_right: {
             x: 1112,
@@ -296,7 +284,7 @@ var fields = [
         id:"attorneyWsbaNumber",
         bottom_left: {
             x: 1184,
-            y: 1520
+            y: 1535
         },
         top_right: {
             x: 1412,

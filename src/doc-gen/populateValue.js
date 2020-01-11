@@ -1,9 +1,13 @@
-use strict
-populateValues.addEventListener('click', handlePopulateValues);
-function handlePopulateValues(){
+function handlePopulateValues(wnd){
   for (var key of Object.keys(InputDataToFieldIdMapping)){
     for(var value of InputDataToFieldIdMapping[key]){
-      document.getElementById(value).innerHTML = InputData[key];
+      try {
+        wnd.document.getElementById(value).innerHTML = InputData[key];
+        console.log(value)
+      }
+      catch(e) {
+        console.error(value);
+      }
     }
   }
 }
@@ -22,7 +26,7 @@ let InputData = {
   "attorneyWsbaNumber": "98765"
 }
 let InputDataToFieldIdMapping = {
-  "courtType": ["page1.courtType","page2.courtType"],
+  "courtType": ["courtType"],
   "plaintiff": ["plaintiff"],
   "defendant": ["defendant"],
   "countyClerkName": ["countyClerkName"],

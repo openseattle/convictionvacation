@@ -2,12 +2,12 @@
 
 <body>
     <script src="./scale-util.js"></script>
+    <script src="./populateValue.js"></script>
 
     <script>
-
-    var wnd = window.open("about:blank", "", "_blank");
-    wnd.document.write(GenHTML(form, fields, newDim));
-
+		var wnd = window.open("about:blank", "", "_blank");
+		wnd.document.write(GenHTML(form, fields, newDim));
+		handlePopulateValues(wnd);
     </script>
 </body>
 </html>
