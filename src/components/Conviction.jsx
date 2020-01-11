@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactGA from 'react-ga';
 import { Button, Checkbox, Icon, Input, Select, Table } from 'semantic-ui-react';
 
 import CrimeClassification from '../logic/type/CrimesClassifications';
@@ -50,17 +51,33 @@ const Conviction = ({
 
   const onSelect = (e, { value }) => {
     handleChange(index, 'classification', value);
+    ReactGA.event({
+      category: "Conviction",
+      action: ("user classified charge to be: " + value),
+    });
   };
 
   const onChecked = (e, { checked }) => {
     handleChange(index, 'isDomesticViolence', checked);
+    ReactGA.event({
+      category: "Conviction",
+      action: ("user clicked Domestic Violence to be: " + checked),
+    });
   };
 
   const onDuiChecked = (e, { checked }) => {
     handleChange(index, 'isDuiRelated', checked);
+    ReactGA.event({
+      category: "Conviction",
+      action: ("user clicked DUI to be: " + checked),
+    });
   };
 
   const onDelete = () => {
+    ReactGA.event({
+      category: "Conviction",
+      action: "user clicked button to delete conviction",
+    });
     handleDelete(index);
   };
 
