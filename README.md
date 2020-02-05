@@ -62,11 +62,12 @@ This image should be for development only and should not be used in production.
 
 1. Visit [http://localhost:3000](http://localhost:3000) to view it in the browser
 
-1. Shut down the container by viewing all running containers with `docker ps -a` then `docker stop <container_name>`
+1. Shut down the container by hitting `Ctl-C` in the active terminal window or viewing all running containers with `docker ps -a` then `docker stop <container_name>`
 
-1. After making changes, regenerate `node_modules` then mount the files in the container to enable hot reloading.
+1. To enable hot reloading, regenerate `node_modules` run the image with your local repo mounted into the container.
 
    ```
+   cd /path/to/convictionvacation
    docker run -v `pwd`:/root -p 3000:3000 openseattle/convictionvacation:0.0.1 npm install
    docker run -v `pwd`:/root -p 3000:3000 openseattle/convictionvacation:0.0.1
    ```
