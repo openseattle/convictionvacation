@@ -1,7 +1,7 @@
 {
     "name": "convictionvacation",
     "version": "0.1.0",
-    "homepage": "https://openseattle.org/convictionvacation/",
+    "homepage": "",
     "private": true,
     "dependencies": {
         "moment": "^2.24.0",
