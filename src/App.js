@@ -10,7 +10,7 @@ import ReactGA from 'react-ga';
 const trackingId = "UA-156075348-1";
 
 const BetaWarning = () => {
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV === 'beta') {
         return (<div className="App-beta-warning">
             <p>
                 You're in beta mode
