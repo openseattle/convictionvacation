@@ -1,0 +1,14 @@
+.form {
+    position: relative;
+    display: inline-block;
+}
+
+img {
+    width: 1000px;
+}
+
+.form .text {
+    position: absolute;
+    z-index: 999;
+    margin: 0 auto;
+} 
