@@ -8,12 +8,13 @@ import {
 } from 'react-router-dom';
 
 import ConvictionCalculator from './components/ConvictionCalculator';
-import FillableForm from './components/FillableForm';
+import FillableForm from './components/FormPage';
 
 import './App.css';
 
 
 import ReactGA from 'react-ga';
+import FilledForms from './components/FilledForms';
 const trackingId = "UA-156075348-1";
 
 const BetaWarning = () => {
@@ -42,7 +43,7 @@ function App() {
             <Home />
           </Route>
           <Route path="/fillable-form">
-            <FillableForm />
+            <FilledForms />
           </Route>
         </Switch>
       </div>
