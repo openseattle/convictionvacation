@@ -25,3 +25,14 @@ See example of form numbers and title in [Washington State Court Forms](https://
     3. Press "delete" on your keyboard to remove this pages
     4. Save the file via File->Save
 1. Replace or upload to `/public/forms/` folder in the repo
+
+
+## Form Field Coordinates Extraction
+### Mac OSX Instructions
+
+1. Open the form page .PNG image in the "Preview" app.
+1. Draw a selection rectangle from the top right corner of the page, starting from beyond the canvas / actual page itself. Drag the opposite corner of the rectangle to the location of interest.
+![Screenshot](https://user-images.githubusercontent.com/12063755/76690017-642aa580-65f9-11ea-999c-70065dcc801c.png)
+1. Note down the coordinates of the location of interest, this is typically the bottom left corner of a text field that requires filling in.
+
+
