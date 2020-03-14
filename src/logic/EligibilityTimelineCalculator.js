@@ -179,7 +179,7 @@ export default class EligibilityTimelineCalculator {
 
     createSkeletonCalculatorOutput(input) {
         let outputConvictionSkeletons = input.convictions.map(inputConviction => {
-            return new ConvictionOutput(inputConviction.id, null, new ConvictionVacatableReasons([], [], []));
+            return new ConvictionOutput(inputConviction.id, null, new ConvictionVacatableReasons([], [], []), inputConviction.classification);
         });
         return new CalculatorOutput(input.calculationDate, outputConvictionSkeletons);
     }
