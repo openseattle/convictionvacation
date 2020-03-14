@@ -14,14 +14,14 @@ export default function ({courtType, plaintiff, defendant, hearingDate, hearingT
     const data = {
         formImage: 'form1.png',
         inputs: [
-            { text: courtType, pos: { x: 227, y: 343 } }, // court of Washington 
-            { text: plaintiff, pos: { x: 227, y: 420 } }, // plaintiff
-            { text: defendant, pos: { x: 247, y: 470 } }, // defendant
-            { text: hearingDate, pos: { x: 400, y: 705 } }, // hearing date
-            { text: hearingTime, pos: { x: 700, y: 705 } },  // hearing time
-            { text: currentDate, pos: { x: 250, y: 860 } }, // current date
-            { text: attorney, pos: { x: 600, y: 880 } }, // attorney
-            { text: wsba, pos: { x: 700, y: 880 } } // wsba
+            { text: courtType, pos: { x: 227, y: 343 } },
+            { text: plaintiff, pos: { x: 227, y: 420 } },
+            { text: defendant, pos: { x: 247, y: 470 } },
+            { text: hearingDate, pos: { x: 400, y: 705 } },
+            { text: hearingTime, pos: { x: 700, y: 705 } },
+            { text: currentDate, pos: { x: 250, y: 860 } },
+            { text: attorney, pos: { x: 600, y: 880 } },
+            { text: wsba, pos: { x: 700, y: 880 } }
         ]
     };
     const overlay = data.inputs.map((item, key) => <div key={key + item.text} className="text" style={{ left: item.pos.x, top: item.pos.y }}>{item.text}</div>);

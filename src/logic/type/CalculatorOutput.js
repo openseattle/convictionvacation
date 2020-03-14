@@ -16,10 +16,11 @@ export class CalculatorOutput {
 }
 
 export class ConvictionOutput {
-  constructor(id, vacatable, reasons) {
+  constructor(id, vacatable, reasons, classification) {
     this.id = id;
     this.vacatable = vacatable;
     this.reasons = reasons;
+    this.classification = classification;
   }
 }
 
