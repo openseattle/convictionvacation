@@ -14,7 +14,6 @@ import './App.css';
 
 
 import ReactGA from 'react-ga';
-import FilledForms from './components/FilledForms';
 const trackingId = "UA-156075348-1";
 
 const BetaWarning = () => {
@@ -42,9 +41,6 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/fillable-form">
-            <FilledForms />
-          </Route>
         </Switch>
       </div>
     </Router>
@@ -62,11 +58,6 @@ function Home() {
         </p>
       </header>
       <ConvictionCalculator />
-      <footer>
-        <ul>
-          <li><Link to="/fillable-form">FillableForm</Link></li>
-        </ul>
-      </footer>
     </div>
   );
 }

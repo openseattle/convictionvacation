@@ -9,22 +9,22 @@
 import React from 'react';
 import '../styles/fillableForm.css';
 
-export default function () {
+export default function ({courtType, plaintiff, defendant, hearingDate, hearingTime, currentDate, attorney, wsba}) { 
     const pathToImages = '/';
     const data = {
         formImage: 'form1.png',
         inputs: [
-            { text: 'Superior', pos: { x: 227, y: 343 } }, // court of Washington 
-            { text: 'State of Washington', pos: { x: 227, y: 420 } }, // plaintiff
-            { text: 'John Doe', pos: { x: 247, y: 470 } }, // defendant
-            { text: '2019-10-19', pos: { x: 400, y: 705 } }, // hearing date
-            { text: '11:30', pos: { x: 700, y: 705 } },  // hearing time
-            { text: '2019-08-15', pos: { x: 250, y: 860 } }, // current date
-            { text: 'Jane Law', pos: { x: 600, y: 880 } }, // attorney
-            { text: '12346', pos: { x: 700, y: 880 } } // wsba
+            { text: courtType, pos: { x: 227, y: 343 } }, // court of Washington 
+            { text: plaintiff, pos: { x: 227, y: 420 } }, // plaintiff
+            { text: defendant, pos: { x: 247, y: 470 } }, // defendant
+            { text: hearingDate, pos: { x: 400, y: 705 } }, // hearing date
+            { text: hearingTime, pos: { x: 700, y: 705 } },  // hearing time
+            { text: currentDate, pos: { x: 250, y: 860 } }, // current date
+            { text: attorney, pos: { x: 600, y: 880 } }, // attorney
+            { text: wsba, pos: { x: 700, y: 880 } } // wsba
         ]
     };
-    const overlay = data.inputs.map((item, key) => <div className="text" style={{ left: item.pos.x, top: item.pos.y }}>{item.text}</div>);
+    const overlay = data.inputs.map((item, key) => <div key={key + item.text} className="text" style={{ left: item.pos.x, top: item.pos.y }}>{item.text}</div>);
     return (
         <div className='form'>
             <img src={data.formImage} alt="Form1" />
