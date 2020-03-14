@@ -6,12 +6,15 @@ import { Button, Form, Grid, TextArea } from 'semantic-ui-react';
 import ConvictionForm from './ConvictionForm';
 import ConvictionResults from './ConvictionResults';
 
+import FilledForms from './FilledForms';
+
 import EligibilityTimelineCalculator from '../logic/EligibilityTimelineCalculator';
 import { CalculatorInput, ConvictionInput } from '../logic/type/CalculatorInput';
 
 const ConvictionCalculator = () => {
   const calculator = new EligibilityTimelineCalculator();
   const [hasResults, setHasResults] = React.useState(false);
+  const [showForms, setShowForms] = React.useState(false);
   const calculatorInputRef = React.useRef();
   const calculatorOutputRef = React.useRef();
   const [convictions, setConvictions] = React.useState([]);
@@ -77,6 +80,12 @@ const ConvictionCalculator = () => {
     });
     calculatorOutputRef.current = null;
     setHasResults(false);
+    setShowForms(false);
+  };
+
+  const handleBackFromShowForms = () => {
+    setHasResults(true);
+    setShowForms(false);
   };
 
   const handleReset = () => {
@@ -92,6 +101,7 @@ const ConvictionCalculator = () => {
     setClientName('');
     setNotes('');
     setHasResults(false);
+    setShowForms(false);
   };
 
   const handlePrint = () => {
@@ -100,6 +110,15 @@ const ConvictionCalculator = () => {
       action: ("user clicked the print button"),
     });
     window.print();
+  };
+
+  const handleShowForms = () => {
+    ReactGA.event({
+      category: "ShowForms",
+      action: ("user clicked the show forms button"),
+    });
+    setShowForms(true);
+    // window.print();
   };
 
   const onTextAreaChange = (e, { value }) => {
@@ -112,41 +131,52 @@ const ConvictionCalculator = () => {
 
   return (
     <React.Fragment>
-      {hasResults ?
-        <ConvictionResults
-          calculatorInput={calculatorInputRef.current}
+      {showForms ?
+        <FilledForms 
+          clientName={clientName}
           calculatorOutput={calculatorOutputRef.current}
-          clientName={clientName}
-          clientDOB={clientDOB}
-          handleBack={handleBack}
-          handleReset={handleReset}
         /> :
-        <ConvictionForm
-          addConvictions={addConvictions}
-          convictions={convictions}
-          handleChange={handleChange}
-          handleDelete={handleDelete}
-          clientName={clientName}
-          setClientName={setClientName}
-          clientDOB={clientDOB}
-          setClientDOB={setClientDOB}
-        />}
+        hasResults ?
+          <ConvictionResults
+            calculatorInput={calculatorInputRef.current}
+            calculatorOutput={calculatorOutputRef.current}
+            clientName={clientName}
+            clientDOB={clientDOB}
+            handleBack={handleBack}
+            handleReset={handleReset}
+          /> :
+          <ConvictionForm
+            addConvictions={addConvictions}
+            convictions={convictions}
+            handleChange={handleChange}
+            handleDelete={handleDelete}
+            clientName={clientName}
+            setClientName={setClientName}
+            clientDOB={clientDOB}
+            setClientDOB={setClientDOB}
+          />
+      }
 
       <Grid padded stackable columns={2}>
         <Grid.Row>
           <Grid.Column width={13}>
-            <Form>
-              <Form.Field><b>Notes:</b></Form.Field>
-              <TextArea
-                onChange={onTextAreaChange}
-                placeholder='Notes and comments...'
-                rows={10}
-                value={notes} />
-            </Form>
+            {showForms ? 
+              '' :
+              <Form>
+                <Form.Field><b>Notes:</b></Form.Field>
+                <TextArea
+                  onChange={onTextAreaChange}
+                  placeholder='Notes and comments...'
+                  rows={10}
+                  value={notes} />
+              </Form>
+            }
           </Grid.Column>
           <Grid.Column verticalAlign='middle' width={2}>
             {hasResults && <Button fluid primary onClick={handlePrint}>Print</Button>}
-            {!hasResults && <Button fluid primary onClick={handleSubmit}>Submit</Button>}
+            {hasResults && !showForms && <span><br /><Button fluid primary onClick={handleShowForms}>Show Forms</Button></span>}
+            {!hasResults && !showForms && <Button fluid primary onClick={handleSubmit}>Submit</Button>}
+            {showForms && <span><br /><Button fluid primary onClick={handleBackFromShowForms}>Back</Button></span>}
           </Grid.Column>
         </Grid.Row>
       </Grid>
