@@ -33,6 +33,7 @@
         ]
     },
     "devDependencies": {
+        "env-cmd": "^10.1.0",
         "enzyme": "^3.10.0",
         "enzyme-adapter-react-16": "^1.14.0",
         "gh-pages": "^2.1.1"
