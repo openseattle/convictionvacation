@@ -16,6 +16,8 @@ jobs:
       run: |
         npm i
     - name: Build
+      env:
+          REACT_APP_TRACKING_ID: ${{ secrets.REACT_APP_TRACKING_ID }}
       run: |
         npm run build
 
