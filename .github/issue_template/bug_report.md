@@ -1,12 +1,28 @@
-**Description:**
-A clear and concise description of what the bug is.
+## Expected Behavior
 
-**Expected Behavior:**
-A clear and concise description of what you expected to happen.
+> Describe the intended behavior
 
-**System and Software:**
-* Browser:
-* Exact URL:
+## Actual Behavior
 
- **Additional context**
-Add any other context about the problem here.
+> Describe the actual behavior you are seeing
+
+## Screenshots
+
+> If applicable
+
+## Files
+
+> Files pertinent to the bug or issue you are reporting
+
+## Steps to Reproduce the Problem
+
+> Please list the steps required to attempt to replicate the bug
+
+## Specifications
++ Version:
++ Platform:
++ Subsystem:
+
+## Additional Context:
+
+> Add additional information/context, if necessary
