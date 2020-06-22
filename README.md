@@ -2,7 +2,8 @@
 
 [![Build Status](https://github.com/openseattle/convictionvacation/workflows/Build/badge.svg)](https://github.com/openseattle/convictionvacation/actions)
 [![Deployment Status](https://github.com/openseattle/convictionvacation/workflows/Deployment/badge.svg)](http://openseattle.org/convictionvacation/)
-
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+ 
 Automating conviction vacation in King County.
 
 
