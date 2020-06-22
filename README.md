@@ -133,6 +133,11 @@ docker exec -it blissful_meitner /bin/sh
 ```
 
 ## Contributing
+1. [Fork](https://github.com/openseattle/convictionvacation/fork) the repo. 
+2. Create your feature branch ``` git checkout -b feature/your-feature-name ```
+3. Commit your changes ``` git commit -m "commit message describing your changes ```
+4. Push your changes to your feature branch `` git push origin feature/your-feature-name ```
+5. Open a Pull Request 
 
 
 ## Get In Contact
