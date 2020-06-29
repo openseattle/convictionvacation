@@ -1,31 +1,30 @@
 ## What do I need to know to help?
 
-If you are looking to help to with a code contribution our project uses [insert list of programming languages, frameworks, or tools that your project uses]. If you don't feel ready to make a code contribution yet, no problem! You can also check out the documentation issues [link to the docs label or tag on your issue tracker] or the design issues that we have [link to design label or tag on issue tracker if your project tracks design issues].
+If you are looking to help to with a code contribution our project uses JavaScript and React, primarily. If you don't feel ready to make a code contribution yet, no problem! You can also check out the [documentation issues](https://github.com/openseattle/convictionvacation/labels/documentation) or issues that [do not require coding.](https://github.com/openseattle/convictionvacation/labels/Non%20Coding%20Tasks)
 
 #### If you are interested in making a code contribution and would like to learn more about the technologies that we use, check out the list below.
 
-- Include bulleted list of resources (tutorials, videos, books) that new contributors can use to learn what they need to know to contribute to your project
-    
+- [React Design Principles](https://reactjs.org/docs/design-principles.html)
 
-## How do I make a contribution? ( shorten this, make it more concise and user friendly)
+## How do I make a contribution? 
 
 #### Never made an open source contribution before? Wondering how contributions work in the in our project? Here's a quick rundown!
 
-- Find an issue that you are interested in addressing or a feature that you would like to add.
+- Find an [issue](https://github.com/openseattle/convictionvacation/issues) that you are interested in addressing or a feature that you would like to add.
 
 - Fork the repository associated with the issue to your local GitHub organization. This means that you will have a copy of the repository under your-GitHub-username/repository-name.
 
-- Clone the repository to your local machine using git clone https://github.com/github-username/repository-name.git.
+- Clone the repository to your local machine using ```git clone https://github.com/github-username/repository-name.git```
 
-- Create a new branch for your fix using git checkout -b branch-name-here.
+- Create a new branch for your fix using ```git checkout -b branch-name-here```
 
 - Make the appropriate changes for the issue you are trying to address or the feature that you want to add.
 
-- Use git add insert-paths-of-changed-files-here to add the file contents of the changed files to the "snapshot" git uses to manage the state of the project, also known as the index.
+- Use ```git add insert-paths-of-changed-files-here``` to add the file contents of the changed files to the "snapshot" git uses to manage the state of the project, also known as the index.
 
-- Use git commit -m "Insert a short message of the changes made here" to store the contents of the index with a descriptive message.
+- Use ```git commit -m "Insert a short message of the changes made here"``` to store the contents of the index with a descriptive message.
 
-- Push the changes to the remote repository using git push origin branch-name-here.
+- Push the changes to the remote repository using ```git push origin branch-name-here```
 
 - Submit a pull request to the upstream repository.
 
@@ -42,7 +41,7 @@ If you are looking to help to with a code contribution our project uses [insert 
 
 ## Where can I go for help?
 
-If you need help, you can ask questions on our mailing list, IRC chat, or [list any other communication platforms that your project uses].
+If you need help, you can ask questions and reach out on our [Slack workspace]. TODO: add link?
 
 
 ## What does the Code of Conduct mean for me?
