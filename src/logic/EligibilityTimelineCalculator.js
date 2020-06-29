@@ -14,6 +14,17 @@ export default class EligibilityTimelineCalculator {
         let calculationDate = moment(input.calculationDate);
         let clientDOB = moment(input.clientDOB);
 
+        // 0. Determine non-vacatable things:
+        // check for class A
+        input.convictions.forEach((conviction) => {
+            let convictionOutput = output.getConviction(conviction.id);
+            if (conviction.classification === CrimeClassification.FELONY_CLASS_A) {
+            convictionOutput.reasons.notVacatableReasons.push(
+                'Conviction involves Felony Class A, not vacatable.'
+                );
+            }
+        });
+
         // 1. Determine the most recent conviction date, then check whether date between NOW and the date
         //    recent conviction will make any of the convictions ineligible for vacation
         //      Misdemeanor & Gross Misdemeanor - no new conviction in the past 3 years
@@ -66,6 +77,9 @@ export default class EligibilityTimelineCalculator {
                             `The latest conviction date ${lastConvictionDateString} is within the last 5 years.`
                         );
                     }
+                    break;
+                case CrimeClassification.FELONY_CLASS_A:
+                        console.log("Yes");
                     break;
                 default:
                     convictionOutput.reasons.errors.push("Crime Classification not specified.");
@@ -133,6 +147,7 @@ export default class EligibilityTimelineCalculator {
             let relevantDateString = relevantDate.format('YYYY-MM-DD')
             let yearsSinceRelevantDate = calculationDate.diff(relevantDate, 'years');
 
+
             // TODO: Verify if this is only applicable to Felonies
             if (conviction.classification === CrimeClassification.FELONY_CLASS_C ||
                 conviction.classification === CrimeClassification.FELONY_CLASS_B) {
@@ -172,6 +187,7 @@ export default class EligibilityTimelineCalculator {
 
         });
 
+
         this.setEligibilityProperty(output);
 
         return output;
@@ -198,6 +214,7 @@ export default class EligibilityTimelineCalculator {
     setEligibilityProperty(output) {
         output.convictions.forEach((conviction) => {
             if (conviction.reasons.errors.length > 0) {
+                console.log("error, null return");
                 conviction.vacatable = null;
             } else if (conviction.reasons.notVacatableReasons.length > 0) {
                 conviction.vacatable = false;
