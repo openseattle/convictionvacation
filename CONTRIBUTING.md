@@ -41,8 +41,7 @@ If you are looking to help to with a code contribution our project uses JavaScri
 
 ## Where can I go for help?
 
-If you need help, you can ask questions and reach out on our [Slack workspace]. TODO: add link?
-
+If you need help, you can ask questions and reach out on our [https://join.slack.com/t/convictionvacation/shared_invite/zt-fe7strhi-luiuDZn2qgs889gbfGvhcQ].
 
 ## What does the Code of Conduct mean for me?
 
