@@ -74,8 +74,10 @@ const ConvictionForm = ({
 
   return (
     <React.Fragment>
-      <Input label='Client Name: ' placeholder='Client Name' size='large' value={clientName} onChange={onClientNameChange} />
-      <Input label = 'Client Date of Birth: ' type='date' name='date' size='large' value={clientDOB} onChange={onClientDOBChange} />
+      <div style={{display: "flex"}}>
+        <Input label='Client Name: ' placeholder='Client Name' size='large' value={clientName} onChange={onClientNameChange} />
+        <Input label = 'Client Date of Birth: ' type='date' name='date' size='large' value={clientDOB} onChange={onClientDOBChange} />
+      </div>
       <Table striped stackable>
         <Table.Header>
           <Table.Row>
