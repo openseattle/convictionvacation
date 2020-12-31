@@ -1,3 +1,5 @@
+# As of 12/31/2020, this project as detailed in the README has been sunsetted, and a new product is currently underway. We still welcome volunteers to join us and you can find more information about this project, and Open Seattle [here](https://democracylab.org/index/?section=AboutProject&id=226). 
+
 # Conviction Vacation
 
 [![Build Status](https://github.com/openseattle/convictionvacation/workflows/Build/badge.svg)](https://github.com/openseattle/convictionvacation/actions)
