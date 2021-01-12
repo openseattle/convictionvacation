@@ -6,6 +6,11 @@ import CrimeClassification from '../logic/type/CrimesClassifications';
 
 const convictionClassificationOptions = [
   {
+    key: CrimeClassification.FELONY_CLASS_A,
+    value: CrimeClassification.FELONY_CLASS_A,
+    text: 'Felony A'
+  },
+  {
     key: CrimeClassification.FELONY_CLASS_B,
     value: CrimeClassification.FELONY_CLASS_B,
     text: 'Felony B'
