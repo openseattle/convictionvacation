@@ -21,7 +21,7 @@ const ConvictionCalculator = () => {
 
   const addConvictions = (num) => {
     const newConvictions = Array.apply(null, Array(num)).map(() => (
-      { id: '', name: '', classification: '', isDomesticViolence: false, date: '' }));
+      { id: '', name: '', classification: '', isDomesticViolence: false, isDuiRelated: false, date: '' }));
     setConvictions(convictions => convictions.concat(newConvictions));
   };
 
